@@ -26,10 +26,10 @@ const config: StorybookConfig = {
   "docs": {
     "autodocs": true
   },
-  "viteFinal": async (config) => {
-    config.base = "/koast-ui/"; // GitHub Pages에서 올바른 base 경로 설정
-    return config;
-  },
+  // "viteFinal": async (config) => {
+  //   config.base = "/koast-ui/"; // GitHub Pages에서 올바른 base 경로 설정
+  //   return config;
+  // },
   "typescript": {
     "reactDocgen": "react-docgen-typescript",
     "reactDocgenTypescriptOptions": {
