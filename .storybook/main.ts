@@ -25,7 +25,7 @@ const config: StorybookConfig = {
   },
   "staticDirs": ['../public'],
   "viteFinal": async (config) => {
-    config.base = process.env.NODE_ENV === 'production' ? '/koast-ui/' : '/';
+    config.base = process.env.STORYBOOK_BASE || '/';
     return config;
   },
   "typescript": {
