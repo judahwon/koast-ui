@@ -69,6 +69,16 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Ensure clean Git state
+        run: git status # 현재 Git 상태 확인 (디버깅용)
+
+      - name: Commit uncommitted changes (if any)
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git add .
+          git commit -m "Auto-commit uncommitted changes" || echo "No changes to commit"
+
       - name: Bump version & create tag
         run: |
           npm version patch -m "🔖 Release %s"
