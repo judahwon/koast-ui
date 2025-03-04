@@ -47,8 +47,6 @@ jobs:
           npm run build-storybook
           mkdir -p ./dist/storybook
           mv ./storybook-static ./dist/storybook
-        env:
-          STORYBOOK_BASE_URL: /koast-ui/
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
