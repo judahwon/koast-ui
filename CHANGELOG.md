@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.0.14] - 2025-03-04
+### Fixed
+- release와 publish 버전 차이 수정
+
 ## [0.0.13] - 2025-03-04
 ### Added
 - release 자동화
