@@ -49,8 +49,53 @@ jobs:
           checkout: false
           token: ${{ secrets.GITHUB_TOKEN }}
 
-  publish:
+  release:
     needs: build
+    if: |
+      github.event_name == 'push' &&
+      github.ref == 'refs/heads/main' &&
+      contains(github.event.head_commit.message, 'Merge pull request')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # 전체 Git 기록 가져오기
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Bump version & create tag
+        run: |
+          npm version patch -m "🔖 Release %s"
+          git push --follow-tags
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Use existing CHANGELOG for Release
+        run: |
+          echo "### Changelog" > RELEASE_NOTES.md
+          echo "" >> RELEASE_NOTES.md
+          awk '/## \[/{flag=1; next} /## /{flag=0} flag' CHANGELOG.md >> RELEASE_NOTES.md
+        shell: bash
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: "Release ${{ github.ref_name }}"
+          body_path: "RELEASE_NOTES.md" # 기존 CHANGELOG 내용을 Release Body에 포함
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  publish:
+    needs: release
     if: |
       github.event_name == 'push' &&
       github.ref == 'refs/heads/main' &&
