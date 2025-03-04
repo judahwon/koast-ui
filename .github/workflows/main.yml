@@ -12,12 +12,12 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: "20.9.0"
+          node-version: "20"
           cache: "npm"
 
       - name: Install dependencies
@@ -28,29 +28,21 @@ jobs:
 
   deploy-storybook:
     needs: build
-    if: github.event_name == 'push' # main에 push될 때만 실행
+    if: github.event_name == 'push'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: "20.9.0"
-          cache: "npm"
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Build Storybook
-        run: |
-          npm run build-storybook
-
-      - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@v4
+          node-version: "20"
+      - uses: bitovi/github-actions-storybook-to-github-pages@v1.0.3
         with:
-          folder: storybook-static
-          branch: gh-pages
+          install_command: npm install
+          build_command: npm run build-storybook
+          path: storybook-static
+          checkout: false
           token: ${{ secrets.GITHUB_TOKEN }}
 
   publish:
@@ -62,12 +54,12 @@ jobs:
       github.event.before != github.event.after
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: "20.9.0"
+          node-version: "20"
           registry-url: "https://registry.npmjs.org/"
 
       - name: Install dependencies
