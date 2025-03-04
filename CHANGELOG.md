@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.0.13] - 2025-03-04
+### Added
+- release 자동화
+
 ## [0.0.9] - 2025-03-04
 ### Added
 - github pages에 storybook 배포

@@ -87,11 +87,27 @@ jobs:
         id: get_tag
         run: echo "tag=$(git describe --tags --abbrev=0)" >> $GITHUB_ENV
 
+      - name: Extract latest release notes from CHANGELOG.md
+        run: |
+          echo "### Changelog" > RELEASE_NOTES.md
+          echo "" >> RELEASE_NOTES.md
+
+          # 최신 태그에 해당하는 CHANGELOG 섹션만 추출
+          TAG="${{ env.tag }}"
+          awk -v tag="$TAG" '
+          BEGIN {flag=0}
+          /^## / {
+            if (flag) exit;
+            if ($0 ~ "\\[" tag "\\]") flag=1;
+          }
+          flag' CHANGELOG.md >> RELEASE_NOTES.md || echo "No changelog available" > RELEASE_NOTES.md
+        shell: bash
+
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: ${{ env.tag }} # 올바른 태그 사용
-          name: "Release ${{ env.tag }}" # 올바른 릴리즈 이름
+          tag_name: ${{ env.tag }}
+          name: "Release ${{ env.tag }}"
           body_path: "RELEASE_NOTES.md"
           draft: false
           prerelease: false
