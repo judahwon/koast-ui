@@ -26,9 +26,39 @@ jobs:
       - name: Build
         run: npm run build
 
+  deploy-storybook:
+    needs: build
+    if: github.event_name == 'push' # main에 push될 때만 실행
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "20.9.0"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build Storybook
+        run: npm run build-storybook
+        env:
+          STORYBOOK_BASE_URL: /koast-ui/
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: storybook-static
+          branch: gh-pages
+          token: ${{ secrets.GITHUB_TOKEN }}
+
   publish:
     needs: build
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    if: >
+      github.event_name == 'push' &&
+      contains(github.event.head_commit.message, 'Merge pull request')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -49,34 +79,3 @@ jobs:
         run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-  deploy-storybook:
-    needs: build
-    if: github.ref == 'refs/heads/main'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: "20.9.0"
-          cache: "npm"
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Create public directory
-        run: mkdir -p public
-
-      - name: Build Storybook
-        run: npm run build-storybook
-        env:
-          STORYBOOK_BASE: /koast-ui/
-
-      - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          folder: storybook-static
-          branch: gh-pages
-          token: ${{ secrets.GITHUB_TOKEN }}
