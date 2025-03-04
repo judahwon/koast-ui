@@ -103,6 +103,6 @@ export default App;
 
 | 제작여부 | 컴포넌트 | 설명 |
 | :---: | :---: | :---: |
-|  | Skeleton | 스켈레톤 - |
+|  | Skeleton | 스켈레톤 - 로딩 상태 표시 |
 |  | Tooltip | 툴팁 |
 |  | Alert | 알림 |
