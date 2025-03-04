@@ -43,14 +43,17 @@ jobs:
         run: npm install
 
       - name: Build Storybook
-        run: npm run build-storybook
+        run: |
+          npm run build-storybook
+          mkdir -p ./dist/storybook
+          mv ./storybook-static ./dist/storybook
         env:
           STORYBOOK_BASE_URL: /koast-ui/
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: storybook-static
+          folder: dist/storybook
           branch: gh-pages
           token: ${{ secrets.GITHUB_TOKEN }}
 
