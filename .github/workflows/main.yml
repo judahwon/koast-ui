@@ -32,7 +32,6 @@ jobs:
 
   deploy-storybook:
     needs: build
-    if: github.event_name == 'push'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -51,11 +50,7 @@ jobs:
 
   publish:
     needs: build
-    if: >
-      github.event_name == 'push' &&
-      github.event.ref == 'refs/heads/main' &&
-      contains(github.event.head_commit.message, 'Merge pull request') &&
-      github.event.before != github.event.after
+    if: github.event_name == 'push' && github.event.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
