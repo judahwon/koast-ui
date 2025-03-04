@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.0.5] - 2025-03-04
+### Added
+- gh-pages 배포 설정 추가
+
+## [0.0.4] - 2025-03-04
+### Fixed
+- storybook 배포 설정 변경
+
 ## [0.0.3] - 2025-03-04
 ### Fixed
 - storybook 배포 설정 변경
