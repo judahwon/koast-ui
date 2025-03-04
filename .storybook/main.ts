@@ -23,6 +23,11 @@ const config: StorybookConfig = {
   "docs": {
     "autodocs": true
   },
+  "staticDirs": ['../public'],
+  "viteFinal": async (config) => {
+    config.base = process.env.NODE_ENV === 'production' ? '/koast-ui/' : '/';
+    return config;
+  },
   "typescript": {
     "reactDocgen": "react-docgen-typescript",
     "reactDocgenTypescriptOptions": {

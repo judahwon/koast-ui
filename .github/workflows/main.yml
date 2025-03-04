@@ -26,15 +26,6 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Build Storybook
-        run: npm run build-storybook
-
-      - name: Upload Storybook Artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: storybook-static
-          path: storybook-static
-
   publish:
     needs: build
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
@@ -64,11 +55,19 @@ jobs:
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
-      - name: Download Storybook Artifact
-        uses: actions/download-artifact@v3
+      - uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
         with:
-          name: storybook-static
-          path: storybook-static
+          node-version: "20.9.0"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build Storybook
+        run: npm run build-storybook -- --base-path=/koast-ui/
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
