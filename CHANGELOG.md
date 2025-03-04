@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.0.6] - 2025-03-04
+### Fixed
+- storybook 배포 경로 오류 수정
+
 ## [0.0.5] - 2025-03-04
 ### Added
 - storybook 배포 경로 변경
