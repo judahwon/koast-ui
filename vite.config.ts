@@ -8,6 +8,8 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 export default defineConfig(({ command }) => ({
+  base: command === 'serve' ? '/' : '/koast-ui/',
+  publicDir: "public",
   plugins: [
     react(),
     dts({
@@ -25,12 +27,11 @@ export default defineConfig(({ command }) => ({
     },
     outDir: resolve(__dirname, 'dist'),
     rollupOptions: {
-      external: ['react', 'react-dom', 'cesium'],
+      external: ['react', 'react-dom'],
       output: {
         globals: {
           react: 'React',
           'react-dom': 'ReactDOM',
-          cesium: 'Cesium',
         },
       },
     },
