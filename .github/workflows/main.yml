@@ -69,9 +69,6 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Ensure clean Git state
-        run: git status # 현재 Git 상태 확인 (디버깅용)
-
       - name: Commit uncommitted changes (if any)
         run: |
           git config --global user.name "github-actions"
@@ -82,23 +79,20 @@ jobs:
       - name: Bump version & create tag
         run: |
           npm version patch -m "🔖 Release %s"
-          git push --follow-tags
+          git push origin HEAD --follow-tags
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Use existing CHANGELOG for Release
-        run: |
-          echo "### Changelog" > RELEASE_NOTES.md
-          echo "" >> RELEASE_NOTES.md
-          awk '/## \[/{flag=1; next} /## /{flag=0} flag' CHANGELOG.md >> RELEASE_NOTES.md
-        shell: bash
+      - name: Get latest tag
+        id: get_tag
+        run: echo "tag=$(git describe --tags --abbrev=0)" >> $GITHUB_ENV
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: ${{ github.ref }}
-          release_name: "Release ${{ github.ref_name }}"
-          body_path: "RELEASE_NOTES.md" # 기존 CHANGELOG 내용을 Release Body에 포함
+          tag_name: ${{ env.tag }} # 올바른 태그 사용
+          name: "Release ${{ env.tag }}" # 올바른 릴리즈 이름
+          body_path: "RELEASE_NOTES.md"
           draft: false
           prerelease: false
         env:
