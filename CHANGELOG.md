@@ -1,6 +1,11 @@
 # Changelog
 
-## [0.0.16] - 2025-03-04
+## [0.0.17] - 2025-03-05
+### Fixed
+- Select 관련 수정 : 기본 width 크기 수정
+- README 수정
+
+## [0.0.16] - 2025-03-05
 ### Fixed
 - Select 컴포넌트 버그 수정 : fullWidth 속성 default 제거
 

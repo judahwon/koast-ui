@@ -138,7 +138,7 @@ export const Select = <T extends string | number = string | number>(props: Selec
 
   // 렌더링
   return (
-    <div className={`inline-block ${ getWidthStyles(fullWidth) } ${ className || '' }`} ref={selectRef}>
+    <div style={{ display: 'inline-block' }} className={`min-w-64${ getWidthStyles(fullWidth) ? ' ' + getWidthStyles(fullWidth) : '' }${ className ? ' ' + className : '' }`} ref={selectRef}>
       <div className={'relative'}>
         <div
           className={`

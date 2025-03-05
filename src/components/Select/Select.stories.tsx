@@ -6,7 +6,7 @@ import { useState } from 'react';
  * Select 컴포넌트는 사용자가 여러 옵션 중 하나를 선택할 수 있는 드롭다운 메뉴를 제공합니다.
  * 다양한 크기, 변형, 상태를 지원합니다.
  */
-const meta: Meta<typeof Select> = {
+const meta = {
   title: 'Components/Select',
   component: Select,
   parameters: {
@@ -64,33 +64,88 @@ const meta: Meta<typeof Select> = {
       description: 'Select에 에러가 났을 때 하단에 표시할 텍스트입니다.',
     },
   },
-};
+} satisfies Meta<typeof Select>;
 
 export default meta;
-type Story = StoryObj<typeof Select>;
+
+// Select 스토리 타입
+type SelectStory = StoryObj<typeof Select>;
+// SelectItem 스토리 타입
+type SelectItemStory = StoryObj<typeof SelectItem>;
+
+/**
+ * SelectItem 컴포넌트의 기본 스토리입니다.
+ */
+export const Item: SelectItemStory = {
+  name: 'SelectItem(Children) ----------',
+  render: (args) => (
+    <div className={'w-48 rounded border border-gray-300'}>
+      <SelectItem {...args} />
+    </div>
+  ),
+  args: {
+    value: 'option1',
+    children: '옵션 1',
+  },
+};
+
+/**
+ * SelectItem의 비활성화 상태 스토리입니다.
+ */
+export const DisabledItem: SelectItemStory = {
+  name: 'Disabled SelectItem',
+  render: (args) => (
+    <div className={'w-48 rounded border border-gray-300'}>
+      <SelectItem {...args} />
+    </div>
+  ),
+  args: {
+    value: 'option1',
+    children: '비활성화된 옵션',
+    disabled: true,
+  },
+};
+
+/**
+ * SelectItem의 커스텀 스타일 스토리입니다.
+ */
+export const CustomStyledItem: SelectItemStory = {
+  name: 'Custom Styled SelectItem',
+  render: (args) => (
+    <div className={'w-48 rounded border border-gray-300'}>
+      <SelectItem {...args} />
+    </div>
+  ),
+  args: {
+    value: 'option1',
+    children: '커스텀 스타일 옵션',
+    className: 'text-purple-600 font-semibold hover:bg-purple-50',
+  },
+};
 
 /**
  * 기본 Select 예시입니다.
  */
-export const Default: Story = {
-  render: () => (
-    <>
-      <Select placeholder={'선택하세요'}>
-        <SelectItem value={'option1'}>{'옵션 1'}</SelectItem>
-        <SelectItem value={'option2'}>{'옵션 2'}</SelectItem>
-        <SelectItem value={'option3'}>{'옵션 3'}</SelectItem>
-      </Select>
-    </>
+export const Default: SelectStory = {
+  name: 'Select -------------------------',
+  render: (args) => (
+    <Select {...args}>
+      <SelectItem value={'option1'}>{'옵션 1'}</SelectItem>
+      <SelectItem value={'option2'}>{'옵션 2'}</SelectItem>
+    </Select>
   ),
+  args: {
+    placeholder: '선택하세요',
+  },
 };
 
 /**
  * 제어 컴포넌트로 사용하는 Select 예시입니다.
  */
-export const Controlled: Story = {
+export const Controlled: SelectStory = {
   render: () => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    const [value, setValue] = useState<string>('option2');
+    const [value, setValue] = useState<string | undefined>('option2');
 
     return (
       <>
@@ -98,7 +153,7 @@ export const Controlled: Story = {
           <p>{'선택된 값: '}{value}</p>
           <Select
             value={value}
-            onChange={(newValue) => setValue(newValue as string)}
+            onChange={(newValue) => setValue(newValue)}
           >
             <SelectItem value={'option1'}>{'옵션 1'}</SelectItem>
             <SelectItem value={'option2'}>{'옵션 2'}</SelectItem>
@@ -113,7 +168,7 @@ export const Controlled: Story = {
 /**
  * Select 변형(variant) 예시입니다.
  */
-export const Variants: Story = {
+export const Variants: SelectStory = {
   render: () => (
     <>
       <div className={'flex gap-4'}>
@@ -137,7 +192,7 @@ export const Variants: Story = {
 /**
  * Select 크기(size) 예시입니다.
  */
-export const Sizes: Story = {
+export const Sizes: SelectStory = {
   render: () => (
     <>
       <div className={'flex items-end gap-4'}>
@@ -161,7 +216,7 @@ export const Sizes: Story = {
 /**
  * 비활성화된 Select 예시입니다.
  */
-export const Disabled: Story = {
+export const Disabled: SelectStory = {
   render: () => (
     <>
       <div className={'flex flex-col gap-4'}>
@@ -183,7 +238,7 @@ export const Disabled: Story = {
 /**
  * 필수 입력 Select 예시입니다.
  */
-export const Required: Story = {
+export const Required: SelectStory = {
   render: () => (
     <>
       <Select required placeholder={'필수 입력 항목'}>
@@ -197,7 +252,7 @@ export const Required: Story = {
 /**
  * 에러 상태의 Select 예시입니다.
  */
-export const Error: Story = {
+export const Error: SelectStory = {
   render: () => (
     <>
       <div className={'flex flex-col gap-4'}>
@@ -222,7 +277,7 @@ export const Error: Story = {
 /**
  * 전체 너비(fullWidth) Select 예시입니다.
  */
-export const FullWidth: Story = {
+export const FullWidth: SelectStory = {
   render: () => (
     <>
       <div className={'w-80'}>
@@ -239,7 +294,7 @@ export const FullWidth: Story = {
 /**
  * 다양한 옵션을 가진 Select 예시입니다.
  */
-export const ManyOptions: Story = {
+export const ManyOptions: SelectStory = {
   render: () => (
     <>
       <Select placeholder={'국가 선택'}>
@@ -261,7 +316,7 @@ export const ManyOptions: Story = {
 /**
  * 숫자 값을 가진 Select 예시입니다.
  */
-export const NumberValues: Story = {
+export const NumberValues: SelectStory = {
   render: () => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const [value, setValue] = useState<number>(20);
@@ -290,7 +345,7 @@ export const NumberValues: Story = {
 /**
  * 커스텀 스타일이 적용된 Select 예시입니다.
  */
-export const CustomStyled: Story = {
+export const CustomStyled: SelectStory = {
   render: () => (
     <>
       <Select

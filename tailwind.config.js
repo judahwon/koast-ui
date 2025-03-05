@@ -22,7 +22,7 @@ module.exports = {
     'text-xl', 'px-6', 'py-3', 'gap-2.5',
     // 색상 클래스 (모든 변형)
     {
-      pattern: /(bg|text|border|hover:bg|active:bg)-(blue|purple|green|red|amber|sky|gray)-(50|100|600|700|800)/,
+      pattern: /(bg|text|border|hover:bg|active:bg)-(blue|purple|green|red|amber|sky|gray|white)-(50|100|300|600|700|800)/,
     },
     // 기타 유틸리티 클래스
     'opacity-50', 'cursor-not-allowed', 'pointer-events-none',
@@ -31,12 +31,12 @@ module.exports = {
     'shadow-lg', 'w-full',
     
     // Select 컴포넌트 관련 클래스 추가
-    'inline-block', 'w-64', 'transition-colors', 'duration-200',
+    'inline-block', 'min-w-64', 'transition-colors', 'duration-200',
     'hover:border-gray-400', 'bg-gray-50', 'grow', 'truncate', 'text-gray-400',
     'ml-1.5', 'text-red-500', 'ml-2', 'rotate-180', 'transition-transform',
     'z-10', 'mt-1', 'max-h-60', 'overflow-auto', 'shadow-lg',
     'bg-blue-50', 'text-blue-800', 'border-b', 'rounded-none', 'bg-transparent', 'border-none',
-    'border-red-500', 'justify-between'
+    'border-red-500', 'justify-between', 'cursor-pointer', 'bg-white', 'border-gray-300'
   ],
   plugins: [],
 };
