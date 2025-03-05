@@ -41,5 +41,5 @@ export const getErrorStyles = (error: boolean): string => {
  * Select 너비에 따른 스타일을 반환합니다.
  */
 export const getWidthStyles = (fullWidth: boolean): string => {
-  return fullWidth ? 'w-full' : 'w-64';
+  return fullWidth ? 'w-full' : '';
 };
