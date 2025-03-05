@@ -78,15 +78,17 @@ export const Default: Story = {
 };
 
 /**
- * 버튼 변형(variant) 예시입니다.
+ * 버튼 변형(variant) 예시입니다. (줄바꿈을 위해 Fragment를 추가했습니다.)
  */
 export const Variants: Story = {
   render: () => (
-    <div className={'flex gap-4'}>
-      <Button variant={'outlined'}>{'outlined'}</Button>
-      <Button variant={'contained'}>{'contained'}</Button>
-      <Button variant={'text'}>{'text'}</Button>
-    </div>
+    <>
+      <div className={'flex gap-4'}>
+        <Button variant={'outlined'}>{'outlined'}</Button>
+        <Button variant={'contained'}>{'contained'}</Button>
+        <Button variant={'text'}>{'text'}</Button>
+      </div>
+    </>
   ),
 };
 
@@ -95,15 +97,17 @@ export const Variants: Story = {
  */
 export const Colors: Story = {
   render: () => (
-    <div className={'flex flex-wrap gap-4'}>
-      <Button variant={'contained'} color={'primary'}>{'Primary'}</Button>
-      <Button variant={'contained'} color={'secondary'}>{'Secondary'}</Button>
-      <Button variant={'contained'} color={'success'}>{'Success'}</Button>
-      <Button variant={'contained'} color={'error'}>{'Error'}</Button>
-      <Button variant={'contained'} color={'warning'}>{'Warning'}</Button>
-      <Button variant={'contained'} color={'info'}>{'Info'}</Button>
-      <Button variant={'contained'} color={'gray'}>{'Gray'}</Button>
-    </div>
+    <>
+      <div className={'flex flex-wrap gap-4'}>
+        <Button variant={'contained'} color={'primary'}>{'Primary'}</Button>
+        <Button variant={'contained'} color={'secondary'}>{'Secondary'}</Button>
+        <Button variant={'contained'} color={'success'}>{'Success'}</Button>
+        <Button variant={'contained'} color={'error'}>{'Error'}</Button>
+        <Button variant={'contained'} color={'warning'}>{'Warning'}</Button>
+        <Button variant={'contained'} color={'info'}>{'Info'}</Button>
+        <Button variant={'contained'} color={'gray'}>{'Gray'}</Button>
+      </div>
+    </>
   ),
 };
 
@@ -112,13 +116,15 @@ export const Colors: Story = {
  */
 export const Sizes: Story = {
   render: () => (
-    <div className={'flex items-center gap-4'}>
-      <Button size={'xs'}>{'XS'}</Button>
-      <Button size={'sm'}>{'SM'}</Button>
-      <Button size={'md'}>{'MD'}</Button>
-      <Button size={'lg'}>{'LG'}</Button>
-      <Button size={'xl'}>{'XL'}</Button>
-    </div>
+    <>
+      <div className={'flex items-center gap-4'}>
+        <Button size={'xs'}>{'XS'}</Button>
+        <Button size={'sm'}>{'SM'}</Button>
+        <Button size={'md'}>{'MD'}</Button>
+        <Button size={'lg'}>{'LG'}</Button>
+        <Button size={'xl'}>{'XL'}</Button>
+      </div>
+    </>
   ),
 };
 
@@ -127,12 +133,14 @@ export const Sizes: Story = {
  */
 export const WithIcons: Story = {
   render: () => (
-    <div className={'flex flex-wrap gap-4'}>
-      <Button variant={'contained'} startIcon={<Plus />}>{'추가하기'}</Button>
-      <Button variant={'outlined'} endIcon={<ChevronRight />}>{'다음'}</Button>
-      <Button variant={'contained'} startIcon={<Send />} endIcon={<ChevronRight />}>{'전송하기'}</Button>
-      <Button variant={'contained'} color={'gray'} startIcon={<Download />}>{'다운로드'}</Button>
-    </div>
+    <>
+      <div className={'flex flex-wrap gap-4'}>
+        <Button variant={'contained'} startIcon={<Plus />}>{'추가하기'}</Button>
+        <Button variant={'outlined'} endIcon={<ChevronRight />}>{'다음'}</Button>
+        <Button variant={'contained'} startIcon={<Send />} endIcon={<ChevronRight />}>{'전송하기'}</Button>
+        <Button variant={'contained'} color={'gray'} startIcon={<Download />}>{'다운로드'}</Button>
+      </div>
+    </>
   ),
 };
 
@@ -141,11 +149,13 @@ export const WithIcons: Story = {
  */
 export const Disabled: Story = {
   render: () => (
-    <div className={'flex gap-4'}>
-      <Button variant={'outlined'} disabled>{'outlined'}</Button>
-      <Button variant={'contained'} disabled>{'contained'}</Button>
-      <Button variant={'text'} disabled>{'text'}</Button>
-    </div>
+    <>
+      <div className={'flex gap-4'}>
+        <Button variant={'outlined'} disabled>{'outlined'}</Button>
+        <Button variant={'contained'} disabled>{'contained'}</Button>
+        <Button variant={'text'} disabled>{'text'}</Button>
+      </div>
+    </>
   ),
 };
 
@@ -154,12 +164,14 @@ export const Disabled: Story = {
  */
 export const Loading: Story = {
   render: () => (
-    <div className={'flex gap-4'}>
-      <Button variant={'text'} loading>{'로딩 중'}</Button>
-      <Button variant={'contained'} loading>{'로딩 중'}</Button>
-      <Button variant={'outlined'} loading>{'전송 중'}</Button>
-      <Button variant={'contained'} loading startIcon={<Send size={16} />}>{'아이콘 포함'}</Button>
-    </div>
+    <>
+      <div className={'flex gap-4'}>
+        <Button variant={'text'} loading>{'로딩 중'}</Button>
+        <Button variant={'contained'} loading>{'로딩 중'}</Button>
+        <Button variant={'outlined'} loading>{'전송 중'}</Button>
+        <Button variant={'contained'} loading startIcon={<Send size={16} />}>{'아이콘 포함'}</Button>
+      </div>
+    </>
   ),
 };
 
@@ -168,11 +180,13 @@ export const Loading: Story = {
  */
 export const FullWidth: Story = {
   render: () => (
-    <div className={'w-80'}>
-      <Button variant={'contained'} fullWidth>{'전체 너비 버튼'}</Button>
-      <div className={'h-4'} />
-      <Button variant={'outlined'} fullWidth>{'전체 너비 버튼'}</Button>
-    </div>
+    <>
+      <div className={'w-80'}>
+        <Button variant={'contained'} fullWidth>{'전체 너비 버튼'}</Button>
+        <div className={'h-4'} />
+        <Button variant={'outlined'} fullWidth>{'전체 너비 버튼'}</Button>
+      </div>
+    </>
   ),
 };
 
@@ -181,10 +195,12 @@ export const FullWidth: Story = {
  */
 export const Shadow: Story = {
   render: () => (
-    <div className={'flex gap-4'}>
-      <Button variant={'contained'}>{'그림자 없음'}</Button>
-      <Button variant={'contained'} shadow>{'그림자 있음'}</Button>
-    </div>
+    <>
+      <div className={'flex gap-4'}>
+        <Button variant={'contained'}>{'그림자 없음'}</Button>
+        <Button variant={'contained'} shadow>{'그림자 있음'}</Button>
+      </div>
+    </>
   ),
 };
 
@@ -193,24 +209,26 @@ export const Shadow: Story = {
  */
 export const CustomStyled: Story = {
   render: () => (
-    <div className={'flex gap-4'}>
-      <Button
-        variant={'contained'}
-        customStyle={{
-          color: 'white',
-          borderRadius: '4px',
-          padding: '10px 20px',
-        }}
-        className={'bg-green-500 hover:bg-green-700'}
-      >
-        {'커스텀 스타일'}
-      </Button>
-      <Button
-        className={'border-none bg-gradient-to-r from-purple-500 to-pink-500 text-white transition-all duration-300 hover:from-purple-600 hover:to-pink-600'}
-      >
-        {'Tailwind 클래스'}
-      </Button>
-    </div>
+    <>
+      <div className={'flex gap-4'}>
+        <Button
+          variant={'contained'}
+          customStyle={{
+            color: 'white',
+            borderRadius: '4px',
+            padding: '10px 20px',
+          }}
+          className={'bg-green-500 hover:bg-green-700'}
+        >
+          {'커스텀 스타일'}
+        </Button>
+        <Button
+          className={'border-none bg-gradient-to-r from-purple-500 to-pink-500 text-white transition-all duration-300 hover:from-purple-600 hover:to-pink-600'}
+        >
+          {'Tailwind 클래스'}
+        </Button>
+      </div>
+    </>
   ),
 };
 
@@ -219,25 +237,27 @@ export const CustomStyled: Story = {
  */
 export const AsLink: Story = {
   render: () => (
-    <div className={'flex flex-wrap gap-4'}>
-      <Button href={'https://github.com'}>
-        {'github'}
-      </Button>
-      <Button
-        href={'https://naver.com'}
-        variant={'contained'}
-        color={'primary'}
-        endIcon={<ChevronRight size={16} />}
-      >
-        {'Naver로 이동'}
-      </Button>
-      <Button
-        href={'https://google.com'}
-        variant={'text'}
-        color={'info'}
-      >
-        {'Google로 이동'}
-      </Button>
-    </div>
+    <>
+      <div className={'flex flex-wrap gap-4'}>
+        <Button href={'https://github.com'}>
+          {'github'}
+        </Button>
+        <Button
+          href={'https://naver.com'}
+          variant={'contained'}
+          color={'primary'}
+          endIcon={<ChevronRight size={16} />}
+        >
+          {'Naver로 이동'}
+        </Button>
+        <Button
+          href={'https://google.com'}
+          variant={'text'}
+          color={'info'}
+        >
+          {'Google로 이동'}
+        </Button>
+      </div>
+    </>
   ),
 };
