@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.0.19] - 2025-03-05
+### Test
+- TailwindCSS peer denpendency 추가 및 테스트
+
 ## [0.0.18] - 2025-03-05
 ### Fixed
 - Select 관련 Storybook 수정
