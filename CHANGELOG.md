@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.0.16] - 2025-03-04
+### Fixed
+- Select 컴포넌트 버그 수정 : fullWidth 속성 default 제거
+
 ## [0.0.15] - 2025-03-04
 ### Fixed
 - release와 publish 버전 차이 수정

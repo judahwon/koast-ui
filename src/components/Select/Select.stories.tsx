@@ -74,11 +74,13 @@ type Story = StoryObj<typeof Select>;
  */
 export const Default: Story = {
   render: () => (
-    <Select placeholder={'선택하세요'}>
-      <SelectItem value={'option1'}>{'옵션 1'}</SelectItem>
-      <SelectItem value={'option2'}>{'옵션 2'}</SelectItem>
-      <SelectItem value={'option3'}>{'옵션 3'}</SelectItem>
-    </Select>
+    <>
+      <Select placeholder={'선택하세요'}>
+        <SelectItem value={'option1'}>{'옵션 1'}</SelectItem>
+        <SelectItem value={'option2'}>{'옵션 2'}</SelectItem>
+        <SelectItem value={'option3'}>{'옵션 3'}</SelectItem>
+      </Select>
+    </>
   ),
 };
 
@@ -91,17 +93,19 @@ export const Controlled: Story = {
     const [value, setValue] = useState<string>('option2');
 
     return (
-      <div className={'flex flex-col gap-4'}>
-        <p>{'선택된 값: '}{value}</p>
-        <Select
-          value={value}
-          onChange={(newValue) => setValue(newValue as string)}
-        >
-          <SelectItem value={'option1'}>{'옵션 1'}</SelectItem>
-          <SelectItem value={'option2'}>{'옵션 2'}</SelectItem>
-          <SelectItem value={'option3'}>{'옵션 3'}</SelectItem>
-        </Select>
-      </div>
+      <>
+        <div className={'flex flex-col gap-4'}>
+          <p>{'선택된 값: '}{value}</p>
+          <Select
+            value={value}
+            onChange={(newValue) => setValue(newValue as string)}
+          >
+            <SelectItem value={'option1'}>{'옵션 1'}</SelectItem>
+            <SelectItem value={'option2'}>{'옵션 2'}</SelectItem>
+            <SelectItem value={'option3'}>{'옵션 3'}</SelectItem>
+          </Select>
+        </div>
+      </>
     );
   },
 };
@@ -111,20 +115,22 @@ export const Controlled: Story = {
  */
 export const Variants: Story = {
   render: () => (
-    <div className={'flex gap-4'}>
-      <Select variant={'outlined'} placeholder={'outlined'}>
-        <SelectItem value={'option1'}>{'옵션 1'}</SelectItem>
-        <SelectItem value={'option2'}>{'옵션 2'}</SelectItem>
-      </Select>
-      <Select variant={'underlined'} placeholder={'underlined'}>
-        <SelectItem value={'option1'}>{'옵션 1'}</SelectItem>
-        <SelectItem value={'option2'}>{'옵션 2'}</SelectItem>
-      </Select>
-      <Select variant={'text'} placeholder={'text'}>
-        <SelectItem value={'option1'}>{'옵션 1'}</SelectItem>
-        <SelectItem value={'option2'}>{'옵션 2'}</SelectItem>
-      </Select>
-    </div>
+    <>
+      <div className={'flex gap-4'}>
+        <Select variant={'outlined'} placeholder={'outlined'}>
+          <SelectItem value={'option1'}>{'옵션 1'}</SelectItem>
+          <SelectItem value={'option2'}>{'옵션 2'}</SelectItem>
+        </Select>
+        <Select variant={'underlined'} placeholder={'underlined'}>
+          <SelectItem value={'option1'}>{'옵션 1'}</SelectItem>
+          <SelectItem value={'option2'}>{'옵션 2'}</SelectItem>
+        </Select>
+        <Select variant={'text'} placeholder={'text'}>
+          <SelectItem value={'option1'}>{'옵션 1'}</SelectItem>
+          <SelectItem value={'option2'}>{'옵션 2'}</SelectItem>
+        </Select>
+      </div>
+    </>
   ),
 };
 
@@ -133,20 +139,22 @@ export const Variants: Story = {
  */
 export const Sizes: Story = {
   render: () => (
-    <div className={'flex items-end gap-4'}>
-      <Select size={'sm'} placeholder={'Small'}>
-        <SelectItem value={'option1'}>{'옵션 1'}</SelectItem>
-        <SelectItem value={'option2'}>{'옵션 2'}</SelectItem>
-      </Select>
-      <Select size={'md'} placeholder={'Medium'}>
-        <SelectItem value={'option1'}>{'옵션 1'}</SelectItem>
-        <SelectItem value={'option2'}>{'옵션 2'}</SelectItem>
-      </Select>
-      <Select size={'lg'} placeholder={'Large'}>
-        <SelectItem value={'option1'}>{'옵션 1'}</SelectItem>
-        <SelectItem value={'option2'}>{'옵션 2'}</SelectItem>
-      </Select>
-    </div>
+    <>
+      <div className={'flex items-end gap-4'}>
+        <Select size={'sm'} placeholder={'Small'}>
+          <SelectItem value={'option1'}>{'옵션 1'}</SelectItem>
+          <SelectItem value={'option2'}>{'옵션 2'}</SelectItem>
+        </Select>
+        <Select size={'md'} placeholder={'Medium'}>
+          <SelectItem value={'option1'}>{'옵션 1'}</SelectItem>
+          <SelectItem value={'option2'}>{'옵션 2'}</SelectItem>
+        </Select>
+        <Select size={'lg'} placeholder={'Large'}>
+          <SelectItem value={'option1'}>{'옵션 1'}</SelectItem>
+          <SelectItem value={'option2'}>{'옵션 2'}</SelectItem>
+        </Select>
+      </div>
+    </>
   ),
 };
 
@@ -155,18 +163,20 @@ export const Sizes: Story = {
  */
 export const Disabled: Story = {
   render: () => (
-    <div className={'flex flex-col gap-4'}>
-      <Select disabled placeholder={'비활성화된 Select'}>
-        <SelectItem value={'option1'}>{'옵션 1'}</SelectItem>
-        <SelectItem value={'option2'}>{'옵션 2'}</SelectItem>
-      </Select>
+    <>
+      <div className={'flex flex-col gap-4'}>
+        <Select disabled placeholder={'비활성화된 Select'}>
+          <SelectItem value={'option1'}>{'옵션 1'}</SelectItem>
+          <SelectItem value={'option2'}>{'옵션 2'}</SelectItem>
+        </Select>
 
-      <Select placeholder={'비활성화된 옵션이 있는 Select'}>
-        <SelectItem value={'option1'}>{'옵션 1'}</SelectItem>
-        <SelectItem value={'option2'} disabled>{'옵션 2 (비활성화)'}</SelectItem>
-        <SelectItem value={'option3'}>{'옵션 3'}</SelectItem>
-      </Select>
-    </div>
+        <Select placeholder={'비활성화된 옵션이 있는 Select'}>
+          <SelectItem value={'option1'}>{'옵션 1'}</SelectItem>
+          <SelectItem value={'option2'} disabled>{'옵션 2 (비활성화)'}</SelectItem>
+          <SelectItem value={'option3'}>{'옵션 3'}</SelectItem>
+        </Select>
+      </div>
+    </>
   ),
 };
 
@@ -175,10 +185,12 @@ export const Disabled: Story = {
  */
 export const Required: Story = {
   render: () => (
-    <Select required placeholder={'필수 입력 항목'}>
-      <SelectItem value={'option1'}>{'옵션 1'}</SelectItem>
-      <SelectItem value={'option2'}>{'옵션 2'}</SelectItem>
-    </Select>
+    <>
+      <Select required placeholder={'필수 입력 항목'}>
+        <SelectItem value={'option1'}>{'옵션 1'}</SelectItem>
+        <SelectItem value={'option2'}>{'옵션 2'}</SelectItem>
+      </Select>
+    </>
   ),
 };
 
@@ -187,21 +199,23 @@ export const Required: Story = {
  */
 export const Error: Story = {
   render: () => (
-    <div className={'flex flex-col gap-4'}>
-      <Select error placeholder={'에러 상태'}>
-        <SelectItem value={'option1'}>{'옵션 1'}</SelectItem>
-        <SelectItem value={'option2'}>{'옵션 2'}</SelectItem>
-      </Select>
+    <>
+      <div className={'flex flex-col gap-4'}>
+        <Select error placeholder={'에러 상태'}>
+          <SelectItem value={'option1'}>{'옵션 1'}</SelectItem>
+          <SelectItem value={'option2'}>{'옵션 2'}</SelectItem>
+        </Select>
 
-      <Select
-        error
-        errorText={'필수 항목을 선택해주세요'}
-        placeholder={'에러 메시지 포함'}
-      >
-        <SelectItem value={'option1'}>{'옵션 1'}</SelectItem>
-        <SelectItem value={'option2'}>{'옵션 2'}</SelectItem>
-      </Select>
-    </div>
+        <Select
+          error
+          errorText={'필수 항목을 선택해주세요'}
+          placeholder={'에러 메시지 포함'}
+        >
+          <SelectItem value={'option1'}>{'옵션 1'}</SelectItem>
+          <SelectItem value={'option2'}>{'옵션 2'}</SelectItem>
+        </Select>
+      </div>
+    </>
   ),
 };
 
@@ -210,13 +224,15 @@ export const Error: Story = {
  */
 export const FullWidth: Story = {
   render: () => (
-    <div className={'w-80'}>
-      <Select fullWidth placeholder={'전체 너비 Select'}>
-        <SelectItem value={'option1'}>{'옵션 1'}</SelectItem>
-        <SelectItem value={'option2'}>{'옵션 2'}</SelectItem>
-        <SelectItem value={'option3'}>{'옵션 3'}</SelectItem>
-      </Select>
-    </div>
+    <>
+      <div className={'w-80'}>
+        <Select fullWidth placeholder={'전체 너비 Select'}>
+          <SelectItem value={'option1'}>{'옵션 1'}</SelectItem>
+          <SelectItem value={'option2'}>{'옵션 2'}</SelectItem>
+          <SelectItem value={'option3'}>{'옵션 3'}</SelectItem>
+        </Select>
+      </div>
+    </>
   ),
 };
 
@@ -225,18 +241,20 @@ export const FullWidth: Story = {
  */
 export const ManyOptions: Story = {
   render: () => (
-    <Select placeholder={'국가 선택'}>
-      <SelectItem value={'kr'}>{'대한민국'}</SelectItem>
-      <SelectItem value={'us'}>{'미국'}</SelectItem>
-      <SelectItem value={'jp'}>{'일본'}</SelectItem>
-      <SelectItem value={'cn'}>{'중국'}</SelectItem>
-      <SelectItem value={'gb'}>{'영국'}</SelectItem>
-      <SelectItem value={'fr'}>{'프랑스'}</SelectItem>
-      <SelectItem value={'de'}>{'독일'}</SelectItem>
-      <SelectItem value={'it'}>{'이탈리아'}</SelectItem>
-      <SelectItem value={'es'}>{'스페인'}</SelectItem>
-      <SelectItem value={'ca'}>{'캐나다'}</SelectItem>
-    </Select>
+    <>
+      <Select placeholder={'국가 선택'}>
+        <SelectItem value={'kr'}>{'대한민국'}</SelectItem>
+        <SelectItem value={'us'}>{'미국'}</SelectItem>
+        <SelectItem value={'jp'}>{'일본'}</SelectItem>
+        <SelectItem value={'cn'}>{'중국'}</SelectItem>
+        <SelectItem value={'gb'}>{'영국'}</SelectItem>
+        <SelectItem value={'fr'}>{'프랑스'}</SelectItem>
+        <SelectItem value={'de'}>{'독일'}</SelectItem>
+        <SelectItem value={'it'}>{'이탈리아'}</SelectItem>
+        <SelectItem value={'es'}>{'스페인'}</SelectItem>
+        <SelectItem value={'ca'}>{'캐나다'}</SelectItem>
+      </Select>
+    </>
   ),
 };
 
@@ -249,20 +267,22 @@ export const NumberValues: Story = {
     const [value, setValue] = useState<number>(20);
 
     return (
-      <div className={'flex flex-col gap-4'}>
-        <p>{'선택된 값: '}{value}</p>
-        <Select<number>
-          value={value}
-          onChange={(newValue) => setValue(newValue)}
-          placeholder={'나이 선택'}
-        >
-          <SelectItem value={10}>{'10세'}</SelectItem>
-          <SelectItem value={20}>{'20세'}</SelectItem>
-          <SelectItem value={30}>{'30세'}</SelectItem>
-          <SelectItem value={40}>{'40세'}</SelectItem>
-          <SelectItem value={50}>{'50세'}</SelectItem>
-        </Select>
-      </div>
+      <>
+        <div className={'flex flex-col gap-4'}>
+          <p>{'선택된 값: '}{value}</p>
+          <Select<number>
+            value={value}
+            onChange={(newValue) => setValue(newValue)}
+            placeholder={'나이 선택'}
+          >
+            <SelectItem value={10}>{'10세'}</SelectItem>
+            <SelectItem value={20}>{'20세'}</SelectItem>
+            <SelectItem value={30}>{'30세'}</SelectItem>
+            <SelectItem value={40}>{'40세'}</SelectItem>
+            <SelectItem value={50}>{'50세'}</SelectItem>
+          </Select>
+        </div>
+      </>
     );
   },
 };
@@ -272,17 +292,19 @@ export const NumberValues: Story = {
  */
 export const CustomStyled: Story = {
   render: () => (
-    <Select
-      variant={'text'}
-      className={'border-2 border-purple-500 bg-purple-50'}
-      placeholder={'커스텀 스타일 Select'}
-    >
-      <SelectItem value={'option1'} className={'text-purple-700 hover:bg-purple-100'}>
-        {'커스텀 옵션 1'}
-      </SelectItem>
-      <SelectItem value={'option2'} className={'text-purple-700 hover:bg-purple-100'}>
-        {'커스텀 옵션 2'}
-      </SelectItem>
-    </Select>
+    <>
+      <Select
+        variant={'text'}
+        className={'border-2 border-purple-500 bg-purple-50'}
+        placeholder={'커스텀 스타일 Select'}
+      >
+        <SelectItem value={'option1'} className={'text-purple-700 hover:bg-purple-100'}>
+          {'커스텀 옵션 1'}
+        </SelectItem>
+        <SelectItem value={'option2'} className={'text-purple-700 hover:bg-purple-100'}>
+          {'커스텀 옵션 2'}
+        </SelectItem>
+      </Select>
+    </>
   ),
 };

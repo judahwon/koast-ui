@@ -4,7 +4,7 @@ import { SelectProps, SelectItemProps } from './Select.types';
 import { getSizeStyles, getVariantStyles, getErrorStyles, getWidthStyles } from './Select.styles';
 
 /**
- * Koast/ui SelectItem 컴포넌트입니다.
+ * Koast-ui Select(Dropdown) 컴포넌트입니다.
  * Select 컴포넌트의 옵션으로 사용됩니다.
  *
  * @param {string | number} props.value - 항목의 값 : string | number
