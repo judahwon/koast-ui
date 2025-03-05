@@ -74,67 +74,20 @@ type SelectStory = StoryObj<typeof Select>;
 type SelectItemStory = StoryObj<typeof SelectItem>;
 
 /**
- * SelectItem 컴포넌트의 기본 스토리입니다.
- */
-export const Item: SelectItemStory = {
-  name: 'SelectItem(Children) ----------',
-  render: (args) => (
-    <div className={'w-48 rounded border border-gray-300'}>
-      <SelectItem {...args} />
-    </div>
-  ),
-  args: {
-    value: 'option1',
-    children: '옵션 1',
-  },
-};
-
-/**
- * SelectItem의 비활성화 상태 스토리입니다.
- */
-export const DisabledItem: SelectItemStory = {
-  name: 'Disabled SelectItem',
-  render: (args) => (
-    <div className={'w-48 rounded border border-gray-300'}>
-      <SelectItem {...args} />
-    </div>
-  ),
-  args: {
-    value: 'option1',
-    children: '비활성화된 옵션',
-    disabled: true,
-  },
-};
-
-/**
- * SelectItem의 커스텀 스타일 스토리입니다.
- */
-export const CustomStyledItem: SelectItemStory = {
-  name: 'Custom Styled SelectItem',
-  render: (args) => (
-    <div className={'w-48 rounded border border-gray-300'}>
-      <SelectItem {...args} />
-    </div>
-  ),
-  args: {
-    value: 'option1',
-    children: '커스텀 스타일 옵션',
-    className: 'text-purple-600 font-semibold hover:bg-purple-50',
-  },
-};
-
-/**
  * 기본 Select 예시입니다.
  */
 export const Default: SelectStory = {
-  name: 'Select -------------------------',
+  name: 'Select',
   render: (args) => (
-    <Select {...args}>
-      <SelectItem value={'option1'}>{'옵션 1'}</SelectItem>
-      <SelectItem value={'option2'}>{'옵션 2'}</SelectItem>
-    </Select>
+    <div style={{ height: '180px' }}>
+      <Select {...args}>
+        <SelectItem value={'option1'}>{'옵션 1'}</SelectItem>
+        <SelectItem value={'option2'}>{'옵션 2'}</SelectItem>
+      </Select>
+    </div>
   ),
   args: {
+    children: null,
     placeholder: '선택하세요',
   },
 };
@@ -148,7 +101,7 @@ export const Controlled: SelectStory = {
     const [value, setValue] = useState<string | undefined>('option2');
 
     return (
-      <>
+      <div style={{ height: '180px' }}>
         <div className={'flex flex-col gap-4'}>
           <p>{'선택된 값: '}{value}</p>
           <Select
@@ -160,7 +113,7 @@ export const Controlled: SelectStory = {
             <SelectItem value={'option3'}>{'옵션 3'}</SelectItem>
           </Select>
         </div>
-      </>
+      </div>
     );
   },
 };
@@ -170,7 +123,7 @@ export const Controlled: SelectStory = {
  */
 export const Variants: SelectStory = {
   render: () => (
-    <>
+    <div style={{ height: '180px' }}>
       <div className={'flex gap-4'}>
         <Select variant={'outlined'} placeholder={'outlined'}>
           <SelectItem value={'option1'}>{'옵션 1'}</SelectItem>
@@ -185,7 +138,7 @@ export const Variants: SelectStory = {
           <SelectItem value={'option2'}>{'옵션 2'}</SelectItem>
         </Select>
       </div>
-    </>
+    </div>
   ),
 };
 
@@ -194,7 +147,7 @@ export const Variants: SelectStory = {
  */
 export const Sizes: SelectStory = {
   render: () => (
-    <>
+    <div style={{ height: '180px' }}>
       <div className={'flex items-end gap-4'}>
         <Select size={'sm'} placeholder={'Small'}>
           <SelectItem value={'option1'}>{'옵션 1'}</SelectItem>
@@ -209,7 +162,7 @@ export const Sizes: SelectStory = {
           <SelectItem value={'option2'}>{'옵션 2'}</SelectItem>
         </Select>
       </div>
-    </>
+    </div>
   ),
 };
 
@@ -218,7 +171,7 @@ export const Sizes: SelectStory = {
  */
 export const Disabled: SelectStory = {
   render: () => (
-    <>
+    <div style={{ height: '220px' }}>
       <div className={'flex flex-col gap-4'}>
         <Select disabled placeholder={'비활성화된 Select'}>
           <SelectItem value={'option1'}>{'옵션 1'}</SelectItem>
@@ -231,7 +184,7 @@ export const Disabled: SelectStory = {
           <SelectItem value={'option3'}>{'옵션 3'}</SelectItem>
         </Select>
       </div>
-    </>
+    </div>
   ),
 };
 
@@ -240,12 +193,12 @@ export const Disabled: SelectStory = {
  */
 export const Required: SelectStory = {
   render: () => (
-    <>
+    <div style={{ height: '180px' }}>
       <Select required placeholder={'필수 입력 항목'}>
         <SelectItem value={'option1'}>{'옵션 1'}</SelectItem>
         <SelectItem value={'option2'}>{'옵션 2'}</SelectItem>
       </Select>
-    </>
+    </div>
   ),
 };
 
@@ -254,7 +207,7 @@ export const Required: SelectStory = {
  */
 export const Error: SelectStory = {
   render: () => (
-    <>
+    <div style={{ height: '180px' }}>
       <div className={'flex flex-col gap-4'}>
         <Select error placeholder={'에러 상태'}>
           <SelectItem value={'option1'}>{'옵션 1'}</SelectItem>
@@ -270,7 +223,7 @@ export const Error: SelectStory = {
           <SelectItem value={'option2'}>{'옵션 2'}</SelectItem>
         </Select>
       </div>
-    </>
+    </div>
   ),
 };
 
@@ -279,15 +232,15 @@ export const Error: SelectStory = {
  */
 export const FullWidth: SelectStory = {
   render: () => (
-    <>
-      <div className={'w-80'}>
+    <div style={{ height: '180px' }}>
+      <div className={'w-[800px]'}>
         <Select fullWidth placeholder={'전체 너비 Select'}>
           <SelectItem value={'option1'}>{'옵션 1'}</SelectItem>
           <SelectItem value={'option2'}>{'옵션 2'}</SelectItem>
           <SelectItem value={'option3'}>{'옵션 3'}</SelectItem>
         </Select>
       </div>
-    </>
+    </div>
   ),
 };
 
@@ -296,7 +249,7 @@ export const FullWidth: SelectStory = {
  */
 export const ManyOptions: SelectStory = {
   render: () => (
-    <>
+    <div style={{ height: '300px' }}>
       <Select placeholder={'국가 선택'}>
         <SelectItem value={'kr'}>{'대한민국'}</SelectItem>
         <SelectItem value={'us'}>{'미국'}</SelectItem>
@@ -309,7 +262,7 @@ export const ManyOptions: SelectStory = {
         <SelectItem value={'es'}>{'스페인'}</SelectItem>
         <SelectItem value={'ca'}>{'캐나다'}</SelectItem>
       </Select>
-    </>
+    </div>
   ),
 };
 
@@ -322,7 +275,7 @@ export const NumberValues: SelectStory = {
     const [value, setValue] = useState<number>(20);
 
     return (
-      <>
+      <div style={{ height: '180px' }}>
         <div className={'flex flex-col gap-4'}>
           <p>{'선택된 값: '}{value}</p>
           <Select<number>
@@ -333,11 +286,9 @@ export const NumberValues: SelectStory = {
             <SelectItem value={10}>{'10세'}</SelectItem>
             <SelectItem value={20}>{'20세'}</SelectItem>
             <SelectItem value={30}>{'30세'}</SelectItem>
-            <SelectItem value={40}>{'40세'}</SelectItem>
-            <SelectItem value={50}>{'50세'}</SelectItem>
           </Select>
         </div>
-      </>
+      </div>
     );
   },
 };
@@ -347,7 +298,7 @@ export const NumberValues: SelectStory = {
  */
 export const CustomStyled: SelectStory = {
   render: () => (
-    <>
+    <div style={{ height: '180px' }}>
       <Select
         variant={'text'}
         className={'border-2 border-purple-500 bg-purple-50'}
@@ -360,6 +311,56 @@ export const CustomStyled: SelectStory = {
           {'커스텀 옵션 2'}
         </SelectItem>
       </Select>
-    </>
+    </div>
   ),
+};
+
+/**
+ * SelectItem 컴포넌트의 기본 스토리입니다.
+ */
+export const Item: SelectItemStory = {
+  name: 'SelectItem(Children)',
+  render: (args) => (
+    <div className={'w-48 bg-gray-50'}>
+      <SelectItem {...args} />
+    </div>
+  ),
+  args: {
+    value: 'option1',
+    children: '옵션 1',
+  },
+};
+
+/**
+ * SelectItem의 비활성화 상태 스토리입니다.
+ */
+export const DisabledItem: SelectItemStory = {
+  name: 'Disabled SelectItem(Children)',
+  render: (args) => (
+    <div className={'w-48 bg-gray-50'}>
+      <SelectItem {...args} />
+    </div>
+  ),
+  args: {
+    value: 'option1',
+    children: '비활성화된 옵션',
+    disabled: true,
+  },
+};
+
+/**
+ * SelectItem의 커스텀 스타일 스토리입니다.
+ */
+export const CustomStyledItem: SelectItemStory = {
+  name: 'Custom Styled SelectItem(Children)',
+  render: (args) => (
+    <div className={'w-48 bg-gray-50'}>
+      <SelectItem {...args} />
+    </div>
+  ),
+  args: {
+    value: 'option1',
+    children: '커스텀 스타일 옵션',
+    className: 'text-purple-600 font-semibold hover:bg-purple-50',
+  },
 };

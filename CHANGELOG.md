@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.0.18] - 2025-03-05
+### Fixed
+- Select 관련 Storybook 수정
+
 ## [0.0.17] - 2025-03-05
 ### Fixed
 - Select 관련 수정 : 기본 width 크기 수정
