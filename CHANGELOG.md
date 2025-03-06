@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.0.20] - 2025-03-06
+### Added
+- ButtonGroup 컴포넌트 추가
+
 ## [0.0.19] - 2025-03-05
 ### Test
 - TailwindCSS peer denpendency 추가 및 테스트
