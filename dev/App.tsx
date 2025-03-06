@@ -4,6 +4,7 @@ import ButtonExam from './src/components/ButtonExam';
 // import CesiumExam from './src/components/CesiumExam';
 import FolderTreeExam from './src/components/FolderTreeExam';
 import SelectExam from './src/components/SelectExam';
+import ButtonGroupExam from './src/components/ButtonGroupExam';
 
 // 컴포넌트 매핑 객체
 const components = {
@@ -11,12 +12,13 @@ const components = {
   // cesium: CesiumExam,
   folderTree: FolderTreeExam,
   select: SelectExam,
+  buttonGroup: ButtonGroupExam,
 } as const;
 
 type ComponentType = keyof typeof components | null;
 
 const MainView = () => {
-  const [selected, setSelected] = useState<ComponentType>('folderTree');
+  const [selected, setSelected] = useState<ComponentType>('select');
 
   // 동적으로 선택된 컴포넌트 렌더링
   const SelectedComponent = selected ? components[selected] : null;
