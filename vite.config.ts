@@ -1,6 +1,8 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import dts from 'vite-plugin-dts';
+import tailwindcss from 'tailwindcss';
+import autoprefixer from 'autoprefixer';
 import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
 
@@ -16,6 +18,11 @@ export default defineConfig(({ command }) => ({
       outDir: 'dist',
     }),
   ],
+  css: {
+    postcss: {
+      plugins: [tailwindcss(), autoprefixer()],
+    },
+  },
   root: command === 'serve' ? './dev' : undefined,
   build: {
     lib: {
