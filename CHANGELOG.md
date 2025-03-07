@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.0.21] - 2025-03-06
+### Test
+- TailwindCSS, autoprefixer 패키지 빌드 설정 추가
+- lucide-react dependency -> devDependency로 변경
+
 ## [0.0.20] - 2025-03-06
 ### Added
 - ButtonGroup 컴포넌트 추가

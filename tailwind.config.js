@@ -4,8 +4,8 @@ module.exports = {
     './index.html',
     './src/**/*.{js,ts,jsx,tsx}',
     './dev/**/*.{js,ts,jsx,tsx}',
-    './src/**/*.{js,jsx,ts,tsx}',
     './.storybook/**/*.{js,jsx,ts,tsx}',
+    '!./node_modules',
   ],
   theme: {
     extend: {
