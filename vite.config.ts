@@ -3,6 +3,7 @@ import react from '@vitejs/plugin-react';
 import dts from 'vite-plugin-dts';
 import tailwindcss from 'tailwindcss';
 import autoprefixer from 'autoprefixer';
+import postcss from 'rollup-plugin-postcss'; // PostCSS 플러그인 추가
 import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
 
@@ -10,20 +11,17 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 export default defineConfig(({ command }) => ({
-  publicDir: "public",
   plugins: [
     react(),
     dts({
       insertTypesEntry: true,
       outDir: 'dist',
     }),
-  ],
-  css: {
-    postcss: {
+    postcss({
       plugins: [tailwindcss(), autoprefixer()],
-    },
-  },
-  root: command === 'serve' ? './dev' : undefined,
+      extract: 'styles.css',
+    }),
+  ],
   build: {
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),
