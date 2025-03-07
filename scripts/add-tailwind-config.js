@@ -10,7 +10,7 @@ if (fs.existsSync(configPath)) {
   if (!configFile.includes(newContent)) {
     configFile = configFile.replace(
       /content:\s*\[\s*/m,
-      `content: [\n    ${newContent},\n`
+      `content: [\n    ${newContent}\n\t\t`
     );
 
     fs.writeFileSync(configPath, configFile, "utf8");

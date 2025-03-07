@@ -18,6 +18,9 @@
     },
     "./dist/style.css": "./dist/style.css"
   },
+  "bin": {
+    "koast-ui": "scripts/add-tailwind-config.js"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
@@ -27,8 +30,7 @@
     "test": "vitest",
     "prepublishOnly": "npm run build",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build",
-    "postinstall": "node scripts/add-tailwind-config.js"
+    "build-storybook": "storybook build"
   },
   "peerDependencies": {
     "react": "^19.0.0",
