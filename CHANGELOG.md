@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.0.24] - 2025-03-07
+### Added
+- npx script 추가
+
 ## [0.0.23] - 2025-03-07
 ### Added
 - postInstall script 추가
