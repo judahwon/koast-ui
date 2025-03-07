@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.0.23] - 2025-03-06
+### Test
+- 정적 CSS 번들링 추가
+- rollup-plugin-postcss devDependency 추가
+
 ## [0.0.22] - 2025-03-06
 ### Test
 - postCSS dependency 추가
