@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.0.25] - 2025-03-07
+### Fixed
+- npx script 수정
+
 ## [0.0.24] - 2025-03-07
 ### Added
 - npx script 추가

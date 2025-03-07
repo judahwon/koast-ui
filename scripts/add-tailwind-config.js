@@ -1,5 +1,12 @@
+#!/usr/bin/env node
+
 import fs from "fs";
 import path from "path";
+import { fileURLToPath } from "url";
+
+// Windows에서도 __dirname을 사용할 수 있도록 설정
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const configPath = path.join(process.cwd(), "tailwind.config.js");
 const newContent = "'./node_modules/koast-ui/dist/style.css',";

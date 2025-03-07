@@ -19,7 +19,7 @@
     "./dist/style.css": "./dist/style.css"
   },
   "bin": {
-    "koast-ui": "scripts/add-tailwind-config.js"
+    "koast-ui": "./scripts/add-tailwind-config.js"
   },
   "scripts": {
     "dev": "vite",
