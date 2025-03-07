@@ -1,10 +1,14 @@
 # Changelog
 
-## [0.0.22] - 2025-03-06
+## [0.0.23] - 2025-03-07
+### Added
+- postInstall script 추가
+
+## [0.0.22] - 2025-03-07
 ### Test
 - postCSS dependency 추가
 
-## [0.0.21] - 2025-03-06
+## [0.0.21] - 2025-03-07
 ### Test
 - TailwindCSS, autoprefixer 패키지 빌드 설정 추가
 - lucide-react dependency -> devDependency로 변경
