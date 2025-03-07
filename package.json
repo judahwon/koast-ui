@@ -27,7 +27,8 @@
     "test": "vitest",
     "prepublishOnly": "npm run build",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "postinstall": "node scripts/add-tailwind-config.js"
   },
   "peerDependencies": {
     "react": "^19.0.0",
