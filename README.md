@@ -66,6 +66,21 @@ npm run dev
 npm install koast-ui
 ```
 
+### 2. tailwind.config.js 파일에 추가
+
+- 프로젝트 루트에서 아래 명령어를 실행하면 자동으로 tailwind.config.js 파일에 추가됩니다.
+```bash
+npx koast-ui add-tailwind-config
+```
+
+- 만약 오류가 생긴 경우, content 설정을 직접 추가해주세요.
+
+```js
+content: [
+  "./node_modules/koast-ui/dist/style.css",
+],
+```
+
 ### 3. 패키지 사용
 
 ```tsx
