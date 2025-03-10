@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.0.26] - 2025-03-010
+### Fixed
+- Select 컴포넌트 버그 수정 : min-width 제거, overflow-x 제거
+### Test
+- Vite 빌드 설정 수정
+
 ## [0.0.25] - 2025-03-07
 ### Fixed
 - npx script 수정
