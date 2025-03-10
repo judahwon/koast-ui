@@ -68,7 +68,8 @@ npm install koast-ui
 
 ### 2. tailwind.config.js 파일에 추가
 
-- 프로젝트 루트에서 아래 명령어를 실행하면 자동으로 tailwind.config.js 파일에 추가됩니다.
+- koast-ui 패키지에서 사용하는 클래스명이 충돌나지 않도록 하기 위해서는 tailwind.config.js 파일에 추가해야 합니다.
+- 프로젝트 루트(tailwind.config.js가 있는 폴더)에서 아래 명령어를 실행하면 자동으로 tailwind.config.js 파일에 추가됩니다.
 ```bash
 npx koast-ui add-tailwind-config
 ```

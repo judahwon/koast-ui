@@ -16,6 +16,11 @@ export default defineConfig(({ command }) => ({
     dts({
       insertTypesEntry: true,
       outDir: 'dist',
+      exclude: ['**/*.stories.{ts,tsx}', '**/*.test.{ts,tsx}', '**/tests/**'],
+      rollupTypes: true,
+      compilerOptions: {
+        declarationMap: false
+      }
     }),
   ],
   css: {

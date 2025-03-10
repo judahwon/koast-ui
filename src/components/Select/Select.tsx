@@ -138,7 +138,7 @@ export const Select = <T extends string | number = string | number>(props: Selec
 
   // 렌더링
   return (
-    <div style={{ display: 'inline-block' }} className={`min-w-64${ getWidthStyles(fullWidth) ? ' ' + getWidthStyles(fullWidth) : '' }${ className ? ' ' + className : '' }`} ref={selectRef}>
+    <div style={{ display: 'inline-block' }} className={`${ getWidthStyles(fullWidth) ? ' ' + getWidthStyles(fullWidth) : '' }${ className ? ' ' + className : '' }`} ref={selectRef}>
       <div className={'relative'}>
         <div
           className={`
@@ -170,7 +170,7 @@ export const Select = <T extends string | number = string | number>(props: Selec
         </div>
 
         {isOpen && (
-          <div className={'absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded border border-gray-300 bg-white shadow-lg'}>
+          <div className={'absolute z-10 mt-1 max-h-60 w-full overflow-y-auto rounded border border-gray-300 bg-white shadow-lg'}>
             {React.Children.map(children, (child) => {
               if (!React.isValidElement(child)) return null;
 
