@@ -98,20 +98,36 @@ export const Default: SelectStory = {
 export const Controlled: SelectStory = {
   render: () => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    const [value, setValue] = useState<string | undefined>('option2');
+    const [stringValue, setStringValue] = useState<string>('option2');
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const [objectValue, setObjectValue] = useState<Record<string, string | number>>({ id: 1, name: '옵션 1' });
 
     return (
-      <div style={{ height: '180px' }}>
+      <div style={{ height: '280px' }}>
         <div className={'flex flex-col gap-4'}>
-          <p>{'선택된 값: '}{value}</p>
-          <Select
-            value={value}
-            onChange={(newValue) => setValue(newValue)}
-          >
-            <SelectItem value={'option1'}>{'옵션 1'}</SelectItem>
-            <SelectItem value={'option2'}>{'옵션 2'}</SelectItem>
-            <SelectItem value={'option3'}>{'옵션 3'}</SelectItem>
-          </Select>
+          <div>
+            <p>{'문자열 값: '}{stringValue}</p>
+            <Select
+              value={stringValue}
+              onChange={(newValue) => setStringValue(newValue as string)}
+            >
+              <SelectItem value={'option1'}>{'옵션 1'}</SelectItem>
+              <SelectItem value={'option2'}>{'옵션 2'}</SelectItem>
+              <SelectItem value={'option3'}>{'옵션 3'}</SelectItem>
+            </Select>
+          </div>
+
+          <div>
+            <p>{'객체 값: '}{JSON.stringify(objectValue)}</p>
+            <Select
+              value={objectValue}
+              onChange={(newValue) => setObjectValue(newValue)}
+            >
+              <SelectItem value={{ id: 1, name: '옵션 1' }}>{'옵션 1'}</SelectItem>
+              <SelectItem value={{ id: 2, name: '옵션 2' }}>{'옵션 2'}</SelectItem>
+              <SelectItem value={{ id: 3, name: '옵션 3' }}>{'옵션 3'}</SelectItem>
+            </Select>
+          </div>
         </div>
       </div>
     );
@@ -134,8 +150,8 @@ export const Variants: SelectStory = {
           <SelectItem value={'option2'}>{'옵션 2'}</SelectItem>
         </Select>
         <Select variant={'text'} placeholder={'text'}>
-          <SelectItem value={'option1'}>{'옵션 1'}</SelectItem>
-          <SelectItem value={'option2'}>{'옵션 2'}</SelectItem>
+          <SelectItem value={'option1'}>{'옵션1'}</SelectItem>
+          <SelectItem value={'option2'}>{'옵션2'}</SelectItem>
         </Select>
       </div>
     </div>
@@ -362,5 +378,32 @@ export const CustomStyledItem: SelectItemStory = {
     value: 'option1',
     children: '커스텀 스타일 옵션',
     className: 'text-purple-600 font-semibold hover:bg-purple-50',
+  },
+};
+
+/**
+ * 객체 값을 가진 Select 예시입니다.
+ */
+export const ObjectValues: SelectStory = {
+  render: () => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const [value, setValue] = useState<Record<string, string | number>>({ id: 1, name: '옵션 1' });
+
+    return (
+      <div style={{ height: '180px' }}>
+        <div className={'flex flex-col gap-4'}>
+          <p>{'선택된 값: '}{JSON.stringify(value)}</p>
+          <Select<Record<string, string | number>>
+            value={value}
+            onChange={(newValue) => setValue(newValue)}
+            placeholder={'옵션 선택'}
+          >
+            <SelectItem value={{ id: 1, name: '옵션 1' }}>{'옵션 1'}</SelectItem>
+            <SelectItem value={{ id: 2, name: '옵션 2' }}>{'옵션 2'}</SelectItem>
+            <SelectItem value={{ id: 3, name: '옵션 3' }}>{'옵션 3'}</SelectItem>
+          </Select>
+        </div>
+      </div>
+    );
   },
 };

@@ -7,7 +7,7 @@ import { getSizeStyles, getVariantStyles, getErrorStyles, getWidthStyles } from 
  * Koast-ui Select(Dropdown) 컴포넌트입니다.
  * Select 컴포넌트의 옵션으로 사용됩니다.
  *
- * @param {string | number} props.value - 항목의 값 : string | number
+ * @param {string | number | Record<string, string | number>} props.value - 항목의 값 : string | number | Record<string, string | number>
  * @param {React.ReactNode} props.children - 항목에 표시될 내용 : React.ReactNode
  * @param {boolean} [props.disabled=false] - 비활성화 상태 : boolean
  * @param {string} [props.className] - 추가 CSS 클래스 : string
@@ -34,8 +34,8 @@ export const SelectItem = ({ value, children, disabled, className }: SelectItemP
  * Koast/ui Select 컴포넌트입니다.
  * 사용자가 여러 옵션 중 하나를 선택할 수 있는 드롭다운 메뉴를 제공합니다.
  *
- * @param {string | number} [props.value] - 선택된 값 : string | number
- * @param {string | number} [props.defaultValue] - 기본 선택 값 : string | number
+ * @param {string | number | Record<string, string | number>} [props.value] - 선택된 값 : string | number | Record<string, string | number>
+ * @param {string | number | Record<string, string | number>} [props.defaultValue] - 기본 선택 값 : string | number | Record<string, string | number>
  * @param {Function} [props.onChange] - 값 변경 시 호출되는 콜백 함수 : Function
  * @param {string} [props.placeholder] - 선택되지 않았을 때 표시되는 텍스트 : string
  * @param {boolean} [props.disabled=false] - 비활성화 상태 : boolean
@@ -59,7 +59,9 @@ export const SelectItem = ({ value, children, disabled, className }: SelectItemP
  * </Select>
  * ```
  */
-export const Select = <T extends string | number = string | number>(props: SelectProps<T>) => {
+export const Select = <T extends string | number | Record<string, string | number> = string | number>(
+  props: SelectProps<T>,
+) => {
   const {
     value,
     defaultValue,
@@ -80,10 +82,9 @@ export const Select = <T extends string | number = string | number>(props: Selec
 
   // 내부 상태 관리
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedValue, setSelectedValue] = useState<string | number | undefined>(
+  const [selectedValue, setSelectedValue] = useState<string | number | Record<string, string | number> | undefined>(
     value !== undefined ? value : defaultValue,
   );
-  const [selectedLabel, setSelectedLabel] = useState<React.ReactNode>('');
   const selectRef = useRef<HTMLDivElement>(null);
 
   // 외부 클릭 감지를 위한 이벤트 리스너
@@ -104,36 +105,47 @@ export const Select = <T extends string | number = string | number>(props: Selec
   useEffect(() => {
     if (value !== undefined) {
       setSelectedValue(value);
-
-      // 선택된 값에 해당하는 라벨 찾기
-      React.Children.forEach(children, (child) => {
-        if (React.isValidElement(child) && (child.props as SelectItemProps).value === value) {
-          setSelectedLabel((child.props as SelectItemProps).children);
-        }
-      });
     }
-  }, [value, children]);
+  }, [value]);
 
   // 초기 선택된 라벨 설정
   useEffect(() => {
     if (selectedValue !== undefined) {
       React.Children.forEach(children, (child) => {
         if (React.isValidElement(child) && (child.props as SelectItemProps).value === selectedValue) {
-          setSelectedLabel((child.props as SelectItemProps).children);
+          setSelectedValue(selectedValue);
         }
       });
     }
   }, [selectedValue, children]);
 
-  // 옵션 선택 핸들러
-  const handleSelect = (value: string | number) => {
+  // 옵션 선택 핸들러 수정
+  const handleSelect = (value: string | number | Record<string, string | number>) => {
     setSelectedValue(value);
     setIsOpen(false);
 
     if (onChange) {
-      // 원래 값의 타입에 맞게 변환하여 전달
       onChange(value as T);
     }
+  };
+
+  // 선택된 값을 표시하는 함수
+  const getDisplayValue = () => {
+    if (!selectedValue) return '';
+
+    // children을 배열로 변환
+    const childrenArray = React.Children.toArray(children) as React.ReactElement<SelectItemProps>[];
+
+    // 현재 선택된 값과 일치하는 SelectItem을 찾음
+    const selectedItem = childrenArray.find((child) => {
+      if (typeof selectedValue === 'object' && typeof child.props.value === 'object') {
+        return JSON.stringify(child.props.value) === JSON.stringify(selectedValue);
+      }
+      return child.props.value === selectedValue;
+    });
+
+    // 해당 SelectItem의 children(표시될 텍스트)을 반환
+    return selectedItem ? selectedItem.props.children : '';
   };
 
   // 렌더링
@@ -160,7 +172,7 @@ export const Select = <T extends string | number = string | number>(props: Selec
           data-name={name}
         >
           <div className={`flex grow items-center justify-between truncate ${ !selectedValue && placeholder ? 'text-gray-400' : '' }`}>
-            {selectedValue ? selectedLabel : placeholder || ''}
+            {getDisplayValue() || placeholder}
             {required && !selectedValue && <span className={'ml-1.5 text-xs text-red-500'}>{'필수*'}</span>}
           </div>
           <ChevronDown
@@ -181,6 +193,8 @@ export const Select = <T extends string | number = string | number>(props: Selec
                   onClick={() => !itemDisabled && handleSelect(itemValue)}
                   className={`${
                     selectedValue === itemValue ? 'bg-blue-50 text-blue-800' : ''
+                  } ${
+                    size === 'sm' ? 'text-sm' : size === 'lg' ? 'text-lg' : 'text-base'
                   }`}
                 >
                   {child}
