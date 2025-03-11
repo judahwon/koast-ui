@@ -1,6 +1,10 @@
 # Changelog
 
-## [0.0.26] - 2025-03-010
+## [0.0.27] - 2025-03-11
+### Added
+- Select 컴포넌트 value 타입 수정 : string, number 또는 객체 타입
+
+## [0.0.26] - 2025-03-10
 ### Fixed
 - Select 컴포넌트 버그 수정 : min-width 제거, overflow-x 제거
 ### Test

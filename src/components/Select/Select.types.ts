@@ -2,20 +2,24 @@ import React from 'react';
 
 /**
  * Select 컴포넌트의 속성을 정의하는 인터페이스
+ * @template T - string, number 또는 객체 타입 (기본값: string | number)
  */
-export interface SelectProps<T extends string | number = string | number> {
+export interface SelectProps<T extends string | number | Record<string, string | number> = string | number> {
   /**
    * Select의 값입니다.
+   * string, number 또는 { [key: string]: string | number } 형태의 객체가 될 수 있습니다.
    */
   value?: T;
 
   /**
    * 기본 값입니다. (비제어 컴포넌트로 사용할 때)
+   * string, number 또는 { [key: string]: string | number } 형태의 객체가 될 수 있습니다.
    */
   defaultValue?: T;
 
   /**
    * 값이 변경될 때 호출되는 함수입니다.
+   * @param value - 선택된 새로운 값
    */
   onChange?: (value: T)=> void;
 
@@ -92,8 +96,9 @@ export interface SelectProps<T extends string | number = string | number> {
 export interface SelectItemProps {
   /**
    * SelectItem의 값입니다.
+   * string, number 또는 { [key: string]: string | number } 형태의 객체가 될 수 있습니다.
    */
-  value: string | number;
+  value: string | number | Record<string, string | number>;
 
   /**
    * SelectItem의 자식 요소입니다.
