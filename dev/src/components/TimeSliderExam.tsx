@@ -1,14 +1,14 @@
 import React from 'react';
-import { TimeSlider, TimeSliderSize, TimeUnit } from '../../../src';
+import { TimeSlider, StepTimeSliderProps } from '../../../src';
 
 const TimeSliderExam = () => {
-  const props = {
+  const props: StepTimeSliderProps = {
     start: new Date('2025-03-10 07:47'),
     end:  new Date('2025-03-10 09:47'),
     initialDate: new Date('2025-03-10 08:17'),
     stepValue: 30,
-    stepUnit: 'minute' as TimeUnit,
-    size: 'md' as TimeSliderSize,
+    stepUnit: 'minute',
+    size: 'md',
     onChange: undefined,
     renderRulerLabel: (date: Date) => {
       const format = (date: Date) => {
