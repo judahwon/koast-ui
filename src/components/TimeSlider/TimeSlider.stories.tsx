@@ -157,10 +157,7 @@ export const Steps: TimeSliderStory = {
     };
     return (
       <section className={'flex flex-col items-center'}>
-        <div>
-          <TimeSlider {...args} />
-        </div>
-        <pre className={'whitespace-pre-wrap break-words'} />
+        <TimeSlider {...args} />
       </section>
     );
   },
