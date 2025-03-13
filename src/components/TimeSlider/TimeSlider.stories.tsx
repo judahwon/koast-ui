@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { TimeSlider } from './TimeSlider';
+import { StepTimeSliderProps } from './TimeSlider.types';
 
 /**
  * TimeSlider 컴포넌트는 입력받은 시작시점과 종료시점, 그리고 스텝 간격과 유닛을 이용하여 타임스텝별 슬라이더 기능을 제공합니다.
@@ -80,9 +81,8 @@ type TimeSliderStory = StoryObj<typeof TimeSlider>;
  * 기본 TimeSlider 예시입니다.
  */
 export const Default: TimeSliderStory = {
-  name: 'TimeSlider',
   render: (args) => (
-    <div style={{ height: '180px', width:'900px', padding:'30px' }}>
+    <div className={'h-[180px] w-[900px] p-[30px]'}>
       <TimeSlider {...args} />
     </div>
   ),
@@ -110,169 +110,92 @@ export const Default: TimeSliderStory = {
 };
 
 /**
- * Steps 배열을 이용한 예시입니다.
+ * Steps 배열을 이용한 예시입니다. <br>
+ * 배열로 넘어올 경우 start, end, stepValue, stepUnit이 무시됨!
  */
 export const Steps: TimeSliderStory = {
-  name: 'Steps',
-  render: (args) => (
-    <section style={{ display:'flex' }}>
-      <pre style={{ width:'500px', whiteSpace: 'pre-wrap', overflowWrap: 'break-word' }}>
-        {
-          `
-          Steps 배열로 넘겨주는 예제. 배열로 넘어올 경우 start, end, stepValue, stepUnit이 무시됨. 
-          {
-            start: new Date('2025-03-10 07:47'),
-            end:  new Date('2025-03-10 09:47'),
-            steps: [
-              new Date('2025-03-13 18:00'),
-              new Date('2025-03-14 6:00'),
-              new Date('2025-03-14 18:00'),
-              new Date('2025-03-15 6:00'),
-              new Date('2025-03-15 18:00'),
-              new Date('2025-03-16 6:00'),
-              new Date('2025-03-16 18:00'),
-              new Date('2025-03-17 6:00'),
-              new Date('2025-03-17 18:00'),
-              new Date('2025-03-18 6:00'),
-              new Date('2025-03-18 18:00'),
-              new Date('2025-03-19 6:00'),
-              new Date('2025-03-19 18:00'),
-              new Date('2025-03-20 00:00'),
-              new Date('2025-03-21 00:00'),
-              new Date('2025-03-22 00:00'),
-            ],
-            stepValue: 30,
-            stepUnit: 'day',
-            size: 'md',
-            onChange: undefined,
-            renderGuideMessage: (date: Date) => {
-              const format = (date: Date) => {
-                const hour = date.getHours();
-
-                return  hour === 18 ? '오후' : hour === 6 ? '오전' : '전일';
-              };
-              return format(date);
-            },
-            renderSelectedGuideMessage:(date: Date) => {
-              const format = (date: Date) => {
-                const hour = date.getHours();
-                const dateDate = date.getDate();
-                const month = date.getMonth() + 1;
-                return  month + '.' + dateDate + ' ' + (hour === 18 ? '오후' : hour === 6 ? '오전' : '');
-              };
-              return format(date);
-            },
-          }
-            `
-        }
-      </pre>
-      <div style={{ height: '180px', width:'900px', padding:'30px' }}>
-        <TimeSlider {...args} />
-      </div>
-    </section>
-  ),
-  args: {
-    start: new Date('2025-03-10 07:47'),
-    end:  new Date('2025-03-10 09:47'),
-    steps: [
-      new Date('2025-03-13 18:00'),
-      new Date('2025-03-14 6:00'),
-      new Date('2025-03-14 18:00'),
-      new Date('2025-03-15 6:00'),
-      new Date('2025-03-15 18:00'),
-      new Date('2025-03-16 6:00'),
-      new Date('2025-03-16 18:00'),
-      new Date('2025-03-17 6:00'),
-      new Date('2025-03-17 18:00'),
-      new Date('2025-03-18 6:00'),
-      new Date('2025-03-18 18:00'),
-      new Date('2025-03-19 6:00'),
-      new Date('2025-03-19 18:00'),
-      new Date('2025-03-20 00:00'),
-      new Date('2025-03-21 00:00'),
-      new Date('2025-03-22 00:00'),
-    ],
-    stepValue: 30,
-    stepUnit: 'day',
-    size: 'md',
-    onChange: undefined,
-    renderGuideMessage: (date: Date) => {
-      const format = (date: Date) => {
-        const hour = date.getHours();
-
-        return `${ hour === 18 ? '오후' : hour === 6 ? '오전' : '전일' }`;
-      };
-      return format(date);
-    },
-    renderSelectedGuideMessage:(date: Date) => {
-      const format = (date: Date) => {
-        const hour = date.getHours();
-        const dateDate = date.getDate();
-        const month = date.getMonth() + 1;
-        return `${ month }.${ dateDate } ${ hour === 18 ? '오후' : hour === 6 ? '오전' : '' }`;
-      };
-      return format(date);
-    },
+  render: () => {
+    const args: StepTimeSliderProps = {
+      stepValue: 30,
+      stepUnit: 'day',
+      start: new Date('2025-03-10 07:47'),
+      end: new Date('2025-03-10 09:47'),
+      size: 'md',
+      onChange: undefined,
+      steps: [
+        new Date('2025-03-13 18:00'),
+        new Date('2025-03-14 6:00'),
+        new Date('2025-03-14 18:00'),
+        new Date('2025-03-15 6:00'),
+        new Date('2025-03-15 18:00'),
+        new Date('2025-03-16 6:00'),
+        new Date('2025-03-16 18:00'),
+        new Date('2025-03-17 6:00'),
+        new Date('2025-03-17 18:00'),
+        new Date('2025-03-18 6:00'),
+        new Date('2025-03-18 18:00'),
+        new Date('2025-03-19 6:00'),
+        new Date('2025-03-19 18:00'),
+        new Date('2025-03-20 00:00'),
+        new Date('2025-03-21 00:00'),
+        new Date('2025-03-22 00:00'),
+      ],
+      renderGuideMessage: (date: Date) => {
+        const format = (date: Date) => {
+          const hour = date.getHours();
+          return `${ hour === 18 ? '오후' : hour === 6 ? '오전' : '전일' }`;
+        };
+        return format(date);
+      },
+      renderSelectedGuideMessage: (date: Date) => {
+        const format = (date: Date) => {
+          const hour = date.getHours();
+          return `${ hour === 18 ? '오후' : hour === 6 ? '오전' : '' }`;
+        };
+        return format(date);
+      },
+    };
+    return (
+      <section className={'flex flex-col items-center'}>
+        <div>
+          <TimeSlider {...args} />
+        </div>
+        <pre className={'whitespace-pre-wrap break-words'} />
+      </section>
+    );
   },
 };
 
 /**
- * Steps 배열을 이용한 예시입니다.
+ * Steps 배열을 이용한 예시입니다.<br>
+ * 슬라이더 눈금자에 커스텀 라벨 표시합니다. 스텝이 많으면 표출이 어려워지는 문제를 옵션으로 해결합니다.
  */
 export const RenderRulerLabel: TimeSliderStory = {
-  name: 'RenderRulerLabel',
-  render: (args) => (
-    <section style={{ display:'flex' }}>
-      <pre style={{ width:'500px', whiteSpace: 'pre-wrap', overflowWrap: 'break-word' }}>
-        {
-          `
-          RenderRulerLabel 예제. 슬라이더 눈금자에 커스텀 라벨 표시용. 스텝이 많으면 표출이 어려워 옵션으로 뺌
-          {
-            start: new Date('2025-03-10 07:47'),
-            end:  new Date('2025-03-10 09:47'),
-            stepValue: 30,
-            stepUnit: 'minute',
-            size: 'md',
-            onChange: undefined,
-            renderRulerLabel: (date: Date) => {
-              const format = (date: Date) => {
-                const dateDate = date.getDate();
-                const month = date.getMonth() + 1;
+  render: () => {
+    const args: StepTimeSliderProps = {
+      start: new Date('2025-03-10 07:47'),
+      end: new Date('2025-03-10 09:47'),
+      stepValue: 30,
+      stepUnit: 'minute',
+      size: 'md',
+      onChange: undefined,
+      renderRulerLabel: (date: Date) => {
+        const format = (date: Date) => {
+          const dateDate = date.getDate();
+          const month = date.getMonth() + 1;
 
-                const hour = date.getHours();
-                const min = date.getMinutes();
+          const hour = date.getHours();
+          const min = date.getMinutes();
 
-                return month + '-' + dateDate + ' ' + hour + ':' + min;
-              };
-              return format(date);
-            },
-          }
-            `
-        }
-      </pre>
-      <div style={{ height: '180px', width:'900px', padding:'30px' }}>
+          return `${ month }-${ dateDate } ${ hour }:${ min }`;
+        };
+        return format(date);
+      },
+    };
+    return (
+      <section className={'flex flex-col items-center'}>
         <TimeSlider {...args} />
-      </div>
-    </section>
-  ),
-  args: {
-    start: new Date('2025-03-10 07:47'),
-    end:  new Date('2025-03-10 09:47'),
-    stepValue: 30,
-    stepUnit: 'minute',
-    size: 'md',
-    onChange: undefined,
-    renderRulerLabel: (date: Date) => {
-      const format = (date: Date) => {
-        const dateDate = date.getDate();
-        const month = date.getMonth() + 1;
-
-        const hour = date.getHours();
-        const min = date.getMinutes();
-
-        return `${ month }-${ dateDate } ${ hour }:${ min }`;
-      };
-      return format(date);
-    },
+      </section>
+    );
   },
 };
