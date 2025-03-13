@@ -160,8 +160,8 @@ export const Steps: TimeSliderStory = {
 };
 
 /**
- * Steps 배열을 이용한 예시입니다.<br>
- * 슬라이더 눈금자에 커스텀 라벨 표시합니다. 스텝이 많으면 표출이 어려워지는 문제를 옵션으로 해결합니다.
+ * RenderRulerLabel 예시입니다.<br>
+ * 슬라이더 눈금자에 커스텀 라벨 표시합니다. 스텝이 많으면 표출이 어려워져 기본이 아닌 옵션으로 해결합니다.
  */
 export const RenderRulerLabel: TimeSliderStory = {
   render: () => {
