@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 
 import ButtonExam from './src/components/ButtonExam';
 // import CesiumExam from './src/components/CesiumExam';
+import ButtonGroupExam from './src/components/ButtonGroupExam';
 import FolderTreeExam from './src/components/FolderTreeExam';
 import SelectExam from './src/components/SelectExam';
-import ButtonGroupExam from './src/components/ButtonGroupExam';
+import TimeSliderExam from './src/components/TimeSliderExam';
 
 // 컴포넌트 매핑 객체
 const components = {
@@ -13,6 +14,7 @@ const components = {
   folderTree: FolderTreeExam,
   select: SelectExam,
   buttonGroup: ButtonGroupExam,
+  timeSlider: TimeSliderExam,
 } as const;
 
 type ComponentType = keyof typeof components | null;

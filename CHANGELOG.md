@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.0.28] - 2025-03-13
+### Added
+- TimeSlider 컴포넌트 추가 (스타일 미적용)
+
 ## [0.0.27] - 2025-03-11
 ### Added
 - Select 컴포넌트 value 타입 수정 : string, number 또는 객체 타입
