@@ -1,4 +1,4 @@
-import { DateToStringFunc, TimeSilderSize, TimeUnit } from './TimeSlider.types';
+import { DateToStringFunc, TimeSliderSize, TimeUnit } from './TimeSlider.types';
 
 export const generateSteps = (
   start: Date,
@@ -135,7 +135,7 @@ export const changeSelectedGuideMessage = ({ guageElem, selectedGuideElem, selec
 
 export const returnDate = (date: Date | number) => date instanceof Date ? date : new Date(date);
 
-const currentStopSizeClassName = (size: TimeSilderSize) => {
+const currentStopSizeClassName = (size: TimeSliderSize) => {
   switch (size) {
     case 'lg': {
       return 'before:left-[17px] before:top-[7.5px] before:border-y-[15px] before:border-l-[15px]';
@@ -149,7 +149,7 @@ const currentStopSizeClassName = (size: TimeSilderSize) => {
   }
 };
 
-const currentPlaySizeClassName = (size: TimeSilderSize) => {
+const currentPlaySizeClassName = (size: TimeSliderSize) => {
   switch (size) {
     case 'lg': {
       return 'before:top-[12px] before:left-[12px] before:w-[6px] before:h-[18px] after:top-[12px] after:right-[12px] after:w-[6px] after:h-[18px]';
@@ -163,15 +163,15 @@ const currentPlaySizeClassName = (size: TimeSilderSize) => {
   }
 };
 
-const currentStopStyle = (size: TimeSilderSize) => `before:absolute ${ currentStopSizeClassName(size) } before:border-y-transparent before:border-l-[#9d0300] before:content-[""]`;
-const currentPlayStyle = (size: TimeSilderSize) => `before:absolute before:bg-[#9d0300] after:absolute after:bg-[#9d0300] ${ currentPlaySizeClassName(size) }`;
-export const playStyleStatus = (run: boolean, size: TimeSilderSize) => !run ? currentStopStyle(size) : currentPlayStyle(size);
+const currentStopStyle = (size: TimeSliderSize) => `before:absolute ${ currentStopSizeClassName(size) } before:border-y-transparent before:border-l-[#9d0300] before:content-[""]`;
+const currentPlayStyle = (size: TimeSliderSize) => `before:absolute before:bg-[#9d0300] after:absolute after:bg-[#9d0300] ${ currentPlaySizeClassName(size) }`;
+export const playStyleStatus = (run: boolean, size: TimeSliderSize) => !run ? currentStopStyle(size) : currentPlayStyle(size);
 
 export const animationWidthPercent = 0.05;
 export const sliderWidthPercent = 0.90;
 export const playPercent = 0.75;
 export const prevnextPercent = 0.375;
-export const sizeToTWClassName = (size: TimeSilderSize) => {
+export const sizeToTWClassName = (size: TimeSliderSize) => {
   /* const animationWidthPercent = 0.05;
   const sliderWidthPercent = 0.90;
   const playPercent = 0.75;

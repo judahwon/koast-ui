@@ -1,5 +1,5 @@
 import React from 'react';
-import { TimeSilderSize, TimeSlider, TimeUnit } from '../../../src';
+import { TimeSlider, TimeSliderSize, TimeUnit } from '../../../src';
 
 const TimeSliderExam = () => {
   const props = {
@@ -8,7 +8,7 @@ const TimeSliderExam = () => {
     initialDate: new Date('2025-03-10 08:17'),
     stepValue: 30,
     stepUnit: 'minute' as TimeUnit,
-    size: 'md' as TimeSilderSize,
+    size: 'md' as TimeSliderSize,
     onChange: undefined,
     renderRulerLabel: (date: Date) => {
       const format = (date: Date) => {

@@ -44,7 +44,7 @@ export interface StepTimeSliderProps extends CommonTimeSliderProps {
   /**
    * 타임슬라이더 크기. 기본값은 md
    */
-  size?: TimeSilderSize;
+  size?: TimeSliderSize;
 
   /**
    * 타임슬라이더 재생 시간 간격, 기본값은 1000, 단위는 밀리세컨드
@@ -72,7 +72,7 @@ export interface StepTimeSliderProps extends CommonTimeSliderProps {
 }
 
 export type TimeUnit = 'year' | 'month' | 'day' | 'hour' | 'minute' | 'second';
-export type TimeSilderSize = 'sm' | 'md' | 'lg';
+export type TimeSliderSize = 'sm' | 'md' | 'lg';
 
 export interface StepTimeSliderOnChangeProps {
   step: number,

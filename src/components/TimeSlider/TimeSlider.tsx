@@ -1,6 +1,6 @@
 // import './TimeSlider.css';
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { calculateIndex, changeSelectedGuideMessage, generateSteps, hideGuageHoverMessage, playStyleStatus, returnDate, showGuageHoverMessage, sizeToTWClassName } from './TimeSilder.func';
+import { calculateIndex, changeSelectedGuideMessage, generateSteps, hideGuageHoverMessage, playStyleStatus, returnDate, showGuageHoverMessage, sizeToTWClassName } from './TimeSlider.func';
 import { StepTimeSliderProps } from './TimeSlider.types';
 /**
  * koast-ui 타임슬라이더 컴포넌트입니다.
@@ -9,7 +9,7 @@ import { StepTimeSliderProps } from './TimeSlider.types';
  * @param {'number'} [props.stepValue] - 타임슬라이더 간격, stepUnit에 따라 계산에 사용됨. required
  * @param {'Date'} [props.initialDate] - 초기 슬라이더 시간. 미입력 시 가장 첫번째 위치에 위치 optional
  * @param {'TimeUnit'} [props.stepUnit] - 타임슬라이더 간격 단위. 기본값은 minute, 'year' | 'month' | 'day' | 'hour' | 'minute' | 'second';
- * @param {'TimeSilderSize'} [props.size] - 타임슬라이더 크기. 기본값은 md, 'sm' | 'md' | 'lg';
+ * @param {'TimeSliderSize'} [props.size] - 타임슬라이더 크기. 기본값은 md, 'sm' | 'md' | 'lg';
  * @param {'Date[] | ((start: Date, end: Date, stepValue: number, stepUnit?: TimeUnit)=> Date[]'} [props.steps] - 타임슬라이더 시간 목록. 불규칙적인 경우 사용 (ex.해양기상정보포털). 사용 시 가장 우선적으로 적용됨. optional
  * @param {'number'} [props.animationSpeed] - 타임슬라이더 재생 시간 간격, 기본값은 1000, 단위는 밀리세컨드
  * @param {'(StepTimeSliderOnChangeProps)=> void'} [props.onChange] - 타임 슬라이더 스텝 변경 시 콜백 함수. {step: number,date: Date} 형태의 인자를 넘겨주는 함수 형태
