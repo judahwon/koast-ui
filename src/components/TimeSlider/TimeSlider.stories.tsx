@@ -82,9 +82,7 @@ type TimeSliderStory = StoryObj<typeof TimeSlider>;
  */
 export const Default: TimeSliderStory = {
   render: (args) => (
-    <div className={'h-[180px] w-[900px] p-[30px]'}>
-      <TimeSlider {...args} />
-    </div>
+    <TimeSlider {...args} />
   ),
   args: {
     start: new Date('2025-03-10 07:47'),
@@ -156,9 +154,7 @@ export const Steps: TimeSliderStory = {
       },
     };
     return (
-      <section className={'flex flex-col items-center'}>
-        <TimeSlider {...args} />
-      </section>
+      <TimeSlider {...args} />
     );
   },
 };
@@ -190,9 +186,7 @@ export const RenderRulerLabel: TimeSliderStory = {
       },
     };
     return (
-      <section className={'flex flex-col items-center'}>
-        <TimeSlider {...args} />
-      </section>
+      <TimeSlider {...args} />
     );
   },
 };
