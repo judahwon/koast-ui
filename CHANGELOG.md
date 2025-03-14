@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.0.29] - 2025-03-14
+### Fixed
+- add-tailwind-config.js 수정
+- ./node_modules/koast-ui/dist/style.css를 ./node_modules/koast-ui/dist/*.{js,jsx,ts,tsx}로 변경
+
 ## [0.0.28] - 2025-03-13
 ### Added
 - TimeSlider 컴포넌트 추가 (스타일 미적용)
