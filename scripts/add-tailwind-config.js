@@ -9,7 +9,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const configPath = path.join(process.cwd(), "tailwind.config.js");
-const newContent = "'./node_modules/koast-ui/dist/style.css',";
+const newContent = "'./node_modules/koast-ui/dist/*.{js,jsx,ts,tsx}',";
 
 if (fs.existsSync(configPath)) {
   let configFile = fs.readFileSync(configPath, "utf8");
