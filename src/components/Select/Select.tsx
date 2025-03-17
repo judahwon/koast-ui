@@ -7,7 +7,7 @@ import { getSizeStyles, getVariantStyles, getErrorStyles, getWidthStyles } from 
  * Koast-ui Select(Dropdown) 컴포넌트입니다.
  * Select 컴포넌트의 옵션으로 사용됩니다.
  *
- * @param {string | number | Record<string, string | number>} props.value - 항목의 값 : string | number | Record<string, string | number>
+ * @param {string | number | Record<string, any>} props.value - 항목의 값 : string | number | Record<string, any>
  * @param {React.ReactNode} props.children - 항목에 표시될 내용 : React.ReactNode
  * @param {boolean} [props.disabled=false] - 비활성화 상태 : boolean
  * @param {string} [props.className] - 추가 CSS 클래스 : string
@@ -34,8 +34,8 @@ export const SelectItem = ({ value, children, disabled, className }: SelectItemP
  * Koast/ui Select 컴포넌트입니다.
  * 사용자가 여러 옵션 중 하나를 선택할 수 있는 드롭다운 메뉴를 제공합니다.
  *
- * @param {string | number | Record<string, string | number>} [props.value] - 선택된 값 : string | number | Record<string, string | number>
- * @param {string | number | Record<string, string | number>} [props.defaultValue] - 기본 선택 값 : string | number | Record<string, string | number>
+ * @param {string | number | Record<string, any>} [props.value] - 선택된 값 : string | number | Record<string, any>
+ * @param {string | number | Record<string, any>} [props.defaultValue] - 기본 선택 값 : string | number | Record<string, any>
  * @param {Function} [props.onChange] - 값 변경 시 호출되는 콜백 함수 : Function
  * @param {string} [props.placeholder] - 선택되지 않았을 때 표시되는 텍스트 : string
  * @param {boolean} [props.disabled=false] - 비활성화 상태 : boolean
@@ -59,7 +59,8 @@ export const SelectItem = ({ value, children, disabled, className }: SelectItemP
  * </Select>
  * ```
  */
-export const Select = <T extends string | number | Record<string, string | number> = string | number>(
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const Select = <T extends string | number | Record<string, any> = string | number>(
   props: SelectProps<T>,
 ) => {
   const {
@@ -82,7 +83,8 @@ export const Select = <T extends string | number | Record<string, string | numbe
 
   // 내부 상태 관리
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedValue, setSelectedValue] = useState<string | number | Record<string, string | number> | undefined>(
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [selectedValue, setSelectedValue] = useState<string | number | Record<string, any> | undefined>(
     value !== undefined ? value : defaultValue,
   );
   const selectRef = useRef<HTMLDivElement>(null);
@@ -120,7 +122,8 @@ export const Select = <T extends string | number | Record<string, string | numbe
   }, [selectedValue, children]);
 
   // 옵션 선택 핸들러 수정
-  const handleSelect = (value: string | number | Record<string, string | number>) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const handleSelect = (value: string | number | Record<string, any>) => {
     setSelectedValue(value);
     setIsOpen(false);
 
