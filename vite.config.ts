@@ -46,7 +46,7 @@ export default defineConfig(({ command }) => ({
         },
       },
     },
-    sourcemap: true,
+    sourcemap: false,
     emptyOutDir: true,
     cssCodeSplit: false,
   },
