@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.0.30] - 2025-03-17
+### Fixed
+- Select 컴포넌트 value 타입 수정 : 객체타입 내 타입 제한 제거
+### Added
+- 소스맵 제거
+
 ## [0.0.29] - 2025-03-14
 ### Fixed
 - add-tailwind-config.js 수정
