@@ -97,10 +97,14 @@ export const Default: SelectStory = {
  */
 export const Controlled: SelectStory = {
   render: () => {
+    interface Option {
+      id: number;
+      name: string;
+    }
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const [stringValue, setStringValue] = useState<string>('option2');
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    const [objectValue, setObjectValue] = useState<Record<string, string | number>>({ id: 1, name: '옵션 1' });
+    const [objectValue, setObjectValue] = useState<Option>({ id: 1, name: '옵션 1' });
 
     return (
       <div style={{ height: '280px' }}>
@@ -386,14 +390,19 @@ export const CustomStyledItem: SelectItemStory = {
  */
 export const ObjectValues: SelectStory = {
   render: () => {
+    interface Option {
+      id: number;
+      name: string;
+    }
+
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    const [value, setValue] = useState<Record<string, string | number>>({ id: 1, name: '옵션 1' });
+    const [value, setValue] = useState<Option>({ id: 2, name: '옵션 2' });
 
     return (
       <div style={{ height: '180px' }}>
         <div className={'flex flex-col gap-4'}>
           <p>{'선택된 값: '}{JSON.stringify(value)}</p>
-          <Select<Record<string, string | number>>
+          <Select<Option>
             value={value}
             onChange={(newValue) => setValue(newValue)}
             placeholder={'옵션 선택'}

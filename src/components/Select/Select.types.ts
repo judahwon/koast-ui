@@ -4,7 +4,8 @@ import React from 'react';
  * Select 컴포넌트의 속성을 정의하는 인터페이스
  * @template T - string, number 또는 객체 타입 (기본값: string | number)
  */
-export interface SelectProps<T extends string | number | Record<string, string | number> = string | number> {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export interface SelectProps<T extends string | number | Record<string, any> = string | number> {
   /**
    * Select의 값입니다.
    * string, number 또는 { [key: string]: string | number } 형태의 객체가 될 수 있습니다.
@@ -98,7 +99,8 @@ export interface SelectItemProps {
    * SelectItem의 값입니다.
    * string, number 또는 { [key: string]: string | number } 형태의 객체가 될 수 있습니다.
    */
-  value: string | number | Record<string, string | number>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  value: string | number | Record<string, any>;
 
   /**
    * SelectItem의 자식 요소입니다.
