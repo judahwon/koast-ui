@@ -6,6 +6,7 @@ import ButtonGroupExam from './src/components/ButtonGroupExam';
 import FolderTreeExam from './src/components/FolderTreeExam';
 import SelectExam from './src/components/SelectExam';
 import TimeSliderExam from './src/components/TimeSliderExam';
+import MapLegendExam from './src/components/MapLegendExam';
 
 // 컴포넌트 매핑 객체
 const components = {
@@ -15,6 +16,7 @@ const components = {
   select: SelectExam,
   buttonGroup: ButtonGroupExam,
   timeSlider: TimeSliderExam,
+  mapLegend: MapLegendExam,
 } as const;
 
 type ComponentType = keyof typeof components | null;
