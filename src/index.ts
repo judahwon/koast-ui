@@ -7,5 +7,5 @@ export { default as FolderTree, type TreeNode } from './components/FolderTree';
 export { default as Select, SelectItem, type SelectProps } from './components/Select';
 export { default as TimeSlider } from './components/TimeSlider';
 export type { DateToStringFunc, StepTimeSliderOnChangeProps, StepTimeSliderProps, TimeSliderSize, TimeUnit } from './components/TimeSlider';
-export { default as MapLegend, type MapLegendProps, type LegendData, type ToolbarButton } from './components/MapLegend';
+export { default as MapLegend, type MapLegendProps } from './components/MapLegend';
 
