@@ -54,6 +54,18 @@ const meta: Meta<typeof MapLegend> = {
       control: 'object',
       description: '필터링할 버튼 ID 배열입니다. legendData의 키값으로 이루어진 배열입니다.',
     },
+    legendType: {
+      control: 'select',
+      options: ['bar', 'circle'],
+      description: '범례 표시 타입입니다.',
+      defaultValue: 'bar',
+      onChange: (value: string) => {
+        if (value === 'circle') {
+          return { legendData: sampleCircleLegendData };
+        }
+        return { legendData: sampleLegendData };
+      },
+    },
   },
 };
 
@@ -92,13 +104,98 @@ const sampleLegendData = {
   },
 };
 
-export const Default: Story = {
+const sampleCircleLegendData = {
+  fish: [
+    { color: '#B3E5FC', value: '0-10', opacity: 0.8 },
+    { color: '#81D4FA', value: '10-20', opacity: 0.8 },
+    { color: '#4FC3F7', value: '20-30', opacity: 0.8 },
+  ],
+  chl: [
+    { color: '#F7FCF5', value: '0.1-0.2', opacity: 0.8 },
+    { color: '#E5F5E0', value: '0.2-0.3', opacity: 0.8 },
+    { color: '#C7E9C0', value: '0.3-1', opacity: 0.8 },
+  ],
+  sst: [
+    { color: '#362B71', value: '0-3', opacity: 0.8 },
+    { color: '#3465A0', value: '3-6', opacity: 0.8 },
+    { color: '#68A8CE', value: '6-9', opacity: 0.8 },
+  ],
+  wave: [
+    { color: '#FFFFFF', value: '0.0-0.3', opacity: 0.8 },
+    { color: '#E8E8E8', value: '0.3-1.0', opacity: 0.8 },
+    { color: '#D1D1D1', value: '1.0-1.5', opacity: 0.8 },
+    { color: '#BABABF', value: '1.5-2.0', opacity: 0.8 },
+    { color: '#A3A3AD', value: '2.0-2.5', opacity: 0.8 },
+    { color: '#8C8C9B', value: '2.5-3.0', opacity: 0.8 },
+    { color: '#757589', value: '3.0-3.5', opacity: 0.8 },
+    { color: '#5E5E77', value: '3.5-4.0', opacity: 0.8 },
+    { color: '#474765', value: '4.0-4.5', opacity: 0.8 },
+    { color: '#303053', value: '4.5-5.2', opacity: 0.8 },
+  ],
+};
+
+export const BarLegend: Story = {
   args: {
     visible: true,
     selectedLayerId: 'fish',
     toolbarButtons: sampleToolbarButtons,
     legendData: sampleLegendData,
     excludeButtonIds: [''],
+    legendType: 'bar',
+  },
+};
+
+/**
+ * 개별 범례 항목 표시 범례 예시입니다.
+ */
+
+export const CircleLegend: Story = {
+  render: () => {
+    // 'circle' 타입 범례 데이터 예시
+    const circleLegendData = {
+      fish: [
+        { color: '#B3E5FC', value: '낮음', opacity: 0.8 },
+        { color: '#81D4FA', value: '중간', opacity: 0.8 },
+        { color: '#4FC3F7', value: '많음', opacity: 0.8 },
+        { color: '#81C784', value: '매우많음', opacity: 0.8 },
+      ],
+      chl: [
+        { color: '#362B71', value: '0~0.3', opacity: 0.8 },
+        { color: '#3465A0', value: '0.3~1', opacity: 0.8 },
+        { color: '#68A8CE', value: '1~6', opacity: 0.8 },
+        { color: '#86C993', value: '6~9', opacity: 0.8 },
+        { color: '#C8DDA4', value: '9~12', opacity: 0.8 },
+      ],
+      sst: [
+        { color: '#F7FCF5', value: '낮음', opacity: 0.8 },
+        { color: '#E5F5E0', value: '중간', opacity: 0.8 },
+        { color: '#C7E9C0', value: '높음', opacity: 0.8 },
+        { color: '#A1D99B', value: '매우높음', opacity: 0.8 },
+      ],
+      wave: [
+        { color: '#FFFFFF', value: '낮음', opacity: 0.8 },
+        { color: '#E8E8E8', value: '중간', opacity: 0.8 },
+        { color: '#D1D1D1', value: '높음', opacity: 0.8 },
+        { color: '#BABABF', value: '매우높음', opacity: 0.8 },
+      ],
+    };
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const [selectedId, setSelectedId] = useState('fish');
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const [visible, setVisible] = useState(true);
+    return (
+      <div className={'flex flex-col gap-4'}>
+        <MapLegend
+          legendType={'circle'}
+          visible={visible}
+          onClose={() => setVisible(false)}
+          selectedLayerId={selectedId}
+          onLayerSelect={setSelectedId}
+          toolbarButtons={sampleToolbarButtons}
+          legendData={circleLegendData}
+        />
+      </div>
+    );
   },
 };
 
@@ -155,7 +252,7 @@ export const CustomStyled: Story = {
           toolbarButtons={sampleToolbarButtons}
           legendData={sampleLegendData}
           excludeButtonIds={['grid', 'current']}
-          className={'border border-gray-300 bg-gray-700 text-white'}
+          className={'w-[900px] border border-gray-300 bg-gray-700 text-white'}
         />
       </div>
     );

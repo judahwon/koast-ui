@@ -1,9 +1,9 @@
 import React from 'react';
 
 /**
- * 범례 바에 표시될 데이터 형식을 정의합니다.
+ * 바 형태 범례에 표시될 데이터 형식을 정의합니다.
  */
-export interface LegendData {
+export interface BarLegendData {
   /**
    * 범례에 표시될 색상 배열입니다.
    */
@@ -20,6 +20,32 @@ export interface LegendData {
    */
   opacity?: number;
 }
+
+/**
+ * 개별 범례 항목에 표시될 데이터 형식을 정의합니다.
+ */
+export interface CircleLegendData {
+  /**
+   * 범례 항목의 색상입니다.
+   */
+  color: string;
+
+  /**
+   * 범례 항목의 값입니다.
+   */
+  value: string;
+
+  /**
+   * 범례 항목 색상의 투명도입니다.
+   * @default 1
+   */
+  opacity?: number;
+}
+
+/**
+ * 범례 표시 타입을 정의합니다.
+ */
+export type LegendType = 'bar' | 'circle';
 
 /**
  * 툴바 버튼 항목을 정의합니다.
@@ -76,7 +102,7 @@ export interface MapLegendProps {
    * 범례 데이터를 포함하는 객체입니다.
    * 키는 레이어 ID와 일치해야 합니다.
    */
-  legendData: Record<string, LegendData>;
+  legendData: Record<string, BarLegendData | CircleLegendData[]>;
 
   /**
    * 범례 컨테이너에 추가할 CSS 클래스명입니다.
@@ -95,4 +121,12 @@ export interface MapLegendProps {
    * @default []
    */
   excludeButtonIds?: string[];
+
+  /**
+   * 범례 표시 타입입니다.
+   * 'bar': 연속된 색상 막대 형태로 표시합니다.
+   * 'circle': 개별 항목을 원형과 텍스트로 표시합니다.
+   * @default 'bar'
+   */
+  legendType?: LegendType;
 }
