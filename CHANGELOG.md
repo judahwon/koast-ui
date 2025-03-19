@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.0.31] - 2025-03-19
+### Added
+- MapLegend 컴포넌트 추가(bar, circle)
+
 ## [0.0.30] - 2025-03-17
 ### Fixed
 - Select 컴포넌트 value 타입 수정 : 객체타입 내 타입 제한 제거
