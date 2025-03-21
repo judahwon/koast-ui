@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.0.32] - 2025-03-21
+### Fixed
+- Select 컴포넌트 버그 수정 : 객체 타입 내 name 속성 추가
+- clsx 적용
+
 ## [0.0.31] - 2025-03-19
 ### Added
 - MapLegend 컴포넌트 추가(bar, circle)
