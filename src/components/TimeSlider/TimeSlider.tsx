@@ -2,6 +2,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { calculateIndex, changeSelectedGuideMessage, generateSteps, hideGuageHoverMessage, playStyleStatus, returnDate, showGuageHoverMessage, sizeToTWClassName } from './TimeSlider.func';
 import { StepTimeSliderProps } from './TimeSlider.types';
+import clsx from 'clsx';
 /**
  * koast-ui 타임슬라이더 컴포넌트입니다.
  * @param {'Date'} [props.start] - 타임슬라이더 시작 시간. required
@@ -163,11 +164,18 @@ export const TimeSlider = (props: StepTimeSliderProps) => {
     );
   };
   return (
-    <section className={`flex ${ mainSize } gap-1 font-mono`}>
-      <section className={`timeslider-animation-box-wrapper relative h-full ${ animationBoxWrapperWidth } cursor-pointer`}>
-        <div onClick={() => {
-          setIsRun(!isRun);
-        }} className={`relative ${ playSizeAndRounded } bg-gray-100 shadow-[0_0_4px_0_#000] ${ playStyleStatus(isRun, size) }`}
+    <section className={clsx(`flex ${ mainSize } gap-1 font-mono`)}>
+      <section className={clsx('timeslider-animation-box-wrapper relative h-full', animationBoxWrapperWidth, 'cursor-pointer')}>
+        <div
+          onClick={() => {
+            setIsRun(!isRun);
+          }}
+          className={clsx(
+            'relative',
+            playSizeAndRounded,
+            'bg-gray-100 shadow-[0_0_4px_0_#000]',
+            playStyleStatus(isRun, size),
+          )}
         />
         <div className={'mt-[3px] flex gap-1'}>
           <PrevNextButton points={'12,2 4,8 12,14'} onClick={() => {handlePrev();}} />
@@ -201,7 +209,10 @@ export const TimeSlider = (props: StepTimeSliderProps) => {
                 return (
                   <div
                     key={`${ index }-graduation2`}
-                    className={`relative flex h-full items-center justify-center  ${ calculatedStepsLength - 1 === index ? '' : 'before:absolute before:right-0 before:top-0 before:h-1/2  before:border-r-2 before:border-white before:content-[""]' } `}
+                    className={clsx(
+                      'relative flex h-full items-center justify-center',
+                      calculatedStepsLength - 1 === index ? '' : 'before:absolute before:right-0 before:top-0 before:h-1/2 before:border-r-2 before:border-white before:content-[""]',
+                    )}
                     style={{ width: `${ stepWidthPixel }px` }}
                   >
                     {

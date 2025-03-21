@@ -1,4 +1,5 @@
 import { ButtonColor, ButtonSize, ButtonVariant } from './Button.types';
+import clsx from 'clsx';
 
 /**
  * 기본 버튼 스타일을 정의합니다.
@@ -40,7 +41,16 @@ export const getButtonStyles = (
   // 너비 스타일
   const widthStyle = fullWidth ? 'w-full' : '';
 
-  return `${ baseStyle } ${ sizes[size] } ${ colorStyle } ${ disabledStyle } ${ loadingStyle } ${ elevationStyle } ${ widthStyle } ${ className }`;
+  return clsx(
+    baseStyle,
+    sizes[size],
+    colorStyle,
+    disabledStyle,
+    loadingStyle,
+    elevationStyle,
+    widthStyle,
+    className,
+  );
 };
 
 /**
@@ -84,12 +94,6 @@ export const getColorStyles = (variant: ButtonVariant, color: ButtonColor): stri
       outlined: 'text-gray-600 border border-gray-600 hover:bg-gray-50 active:bg-gray-100',
     },
   };
-
-  // 만약 매핑되지 않는 color값이 들어오면
-  if (!colorMap[color]) {
-    console.warn(`color={'${ color }'} 는 지원하지 않는 색상입니다. primary, secondary, success, error, warning, info, gray 중에 하나를 사용해주세요. (혹은 커스텀 className을 사용해주세요.)`);
-    return colorMap['primary'][variant];
-  }
 
   return colorMap[color][variant];
 };

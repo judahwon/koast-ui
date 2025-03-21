@@ -1,4 +1,5 @@
 import { DateToStringFunc, TimeSliderSize, TimeUnit } from './TimeSlider.types';
+import clsx from 'clsx';
 
 export const generateSteps = (
   start: Date,
@@ -163,9 +164,19 @@ const currentPlaySizeClassName = (size: TimeSliderSize) => {
   }
 };
 
-const currentStopStyle = (size: TimeSliderSize) => `before:absolute ${ currentStopSizeClassName(size) } before:border-y-transparent before:border-l-[#9d0300] before:content-[""]`;
-const currentPlayStyle = (size: TimeSliderSize) => `before:absolute before:bg-[#9d0300] after:absolute after:bg-[#9d0300] ${ currentPlaySizeClassName(size) }`;
-export const playStyleStatus = (run: boolean, size: TimeSliderSize) => !run ? currentStopStyle(size) : currentPlayStyle(size);
+const currentStopStyle = (size: TimeSliderSize) => clsx(
+  'before:absolute',
+  currentStopSizeClassName(size),
+  'before:border-y-transparent before:border-l-[#9d0300] before:content-[""]',
+);
+
+const currentPlayStyle = (size: TimeSliderSize) => clsx(
+  'before:absolute before:bg-[#9d0300] after:absolute after:bg-[#9d0300]',
+  currentPlaySizeClassName(size),
+);
+
+export const playStyleStatus = (run: boolean, size: TimeSliderSize) =>
+  !run ? currentStopStyle(size) : currentPlayStyle(size);
 
 export const animationWidthPercent = 0.05;
 export const sliderWidthPercent = 0.90;

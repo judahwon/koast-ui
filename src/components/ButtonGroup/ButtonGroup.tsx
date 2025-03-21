@@ -1,6 +1,6 @@
 import React from 'react';
 import { ButtonProps } from '../Button/Button.types';
-import { cn } from '../../utils/classNames';
+import clsx from 'clsx';
 
 /**
  * ButtonGroup 컴포넌트의 속성을 정의합니다.
@@ -92,7 +92,7 @@ export const ButtonGroup = (props: ButtonGroupProps) => {
 
   return (
     <div
-      className={cn(
+      className={clsx(
         'inline-flex',
         isVertical ? 'flex-col' : 'flex-row',
         fullWidth ? 'w-full' : '',
@@ -100,14 +100,14 @@ export const ButtonGroup = (props: ButtonGroupProps) => {
       )}
     >
       {buttons.map((button, index) => (
-        <div key={index} className={cn(isVertical ? 'relative w-full' : 'flex items-center', fullWidth ? 'w-full' : '')}>
+        <div key={index} className={clsx(isVertical ? 'relative w-full' : 'flex items-center', fullWidth ? 'w-full' : '')}>
           {React.cloneElement(button, {
             variant,
             color,
             size,
             disabled: disabled || button.props.disabled,
             fullWidth: fullWidth || button.props.fullWidth || isVertical,
-            className: cn(
+            className: clsx(
               // vertical 모드의 클래스네임
               (isVertical && index !== buttons.length - 1) ? 'border-b-0' : '',
               (isVertical && index === 0) ? 'rounded-b-none' : '',
@@ -123,7 +123,7 @@ export const ButtonGroup = (props: ButtonGroupProps) => {
           })}
           {variant === 'text' && index < buttons.length - 1 && (
             <div
-              className={cn(
+              className={clsx(
                 isVertical
                   ? 'h-px w-full bg-gray-300'
                   : 'h-2/3 w-px bg-gray-300',

@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { ChevronDown } from 'lucide-react';
 import { SelectProps, SelectItemProps } from './Select.types';
 import { getSizeStyles, getVariantStyles, getErrorStyles, getWidthStyles } from './Select.styles';
+import clsx from 'clsx';
 
 /**
  * Koast-ui Select(Dropdown) 컴포넌트입니다.
@@ -21,9 +22,11 @@ export const SelectItem = ({ value, children, disabled, className }: SelectItemP
   return (
     <div
       data-value={value}
-      className={`cursor-pointer px-4 py-2 hover:bg-gray-100 ${
-        disabled ? 'cursor-not-allowed opacity-50' : ''
-      } ${ className || '' }`}
+      className={clsx(
+        'cursor-pointer px-4 py-2 hover:bg-gray-100',
+        disabled ? 'cursor-not-allowed opacity-50' : '',
+        className,
+      )}
     >
       {children}
     </div>
@@ -153,17 +156,21 @@ export const Select = <T extends string | number | Record<string, any> = string 
 
   // 렌더링
   return (
-    <div style={{ display: 'inline-block' }} className={`${ getWidthStyles(fullWidth) ? ' ' + getWidthStyles(fullWidth) : '' }${ className ? ' ' + className : '' }`} ref={selectRef}>
+    <div
+      style={{ display: 'inline-block' }}
+      className={clsx(fullWidth && getWidthStyles(fullWidth), className)}
+      ref={selectRef}
+    >
       <div className={'relative'}>
         <div
-          className={`
-            flex cursor-pointer items-center justify-between rounded
-            ${ getVariantStyles(variant) }
-            ${ getSizeStyles(size) }
-            ${ getErrorStyles(error) }
-            ${ disabled ? 'cursor-not-allowed bg-gray-50 opacity-50' : 'hover:border-gray-400' }
-            transition-colors duration-200
-          `}
+          className={clsx(
+            'flex cursor-pointer items-center justify-between rounded',
+            getVariantStyles(variant),
+            getSizeStyles(size),
+            getErrorStyles(error),
+            disabled ? 'cursor-not-allowed bg-gray-50 opacity-50' : 'hover:border-gray-400',
+            'transition-colors duration-200',
+          )}
           onClick={() => !disabled && setIsOpen(!isOpen)}
           tabIndex={disabled ? -1 : 0}
           role={'combobox'}
@@ -174,13 +181,20 @@ export const Select = <T extends string | number | Record<string, any> = string 
           id={id}
           data-name={name}
         >
-          <div className={`flex grow items-center justify-between truncate ${ !selectedValue && placeholder ? 'text-gray-400' : '' }`}>
+          <div className={clsx(
+            'flex grow items-center justify-between truncate',
+            !selectedValue && placeholder ? 'text-gray-400' : '',
+          )}
+          >
             {getDisplayValue() || placeholder}
             {required && !selectedValue && <span className={'ml-1.5 text-xs text-red-500'}>{'필수*'}</span>}
           </div>
           <ChevronDown
             size={20}
-            className={`ml-2 transition-transform duration-200 ${ isOpen ? 'rotate-180' : '' }`}
+            className={clsx(
+              'ml-2 transition-transform duration-200',
+              isOpen ? 'rotate-180' : '',
+            )}
           />
         </div>
 
@@ -194,11 +208,10 @@ export const Select = <T extends string | number | Record<string, any> = string 
               return (
                 <div
                   onClick={() => !itemDisabled && handleSelect(itemValue)}
-                  className={`${
-                    selectedValue === itemValue ? 'bg-blue-50 text-blue-800' : ''
-                  } ${
-                    size === 'sm' ? 'text-sm' : size === 'lg' ? 'text-lg' : 'text-base'
-                  }`}
+                  className={clsx(
+                    selectedValue === itemValue ? 'bg-blue-50 text-blue-800' : '',
+                    size === 'sm' ? 'text-sm' : size === 'lg' ? 'text-lg' : 'text-base',
+                  )}
                 >
                   {child}
                 </div>
