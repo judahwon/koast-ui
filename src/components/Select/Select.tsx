@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { ChevronDown } from 'lucide-react';
-import { SelectProps, SelectItemProps } from './Select.types';
+import { SelectProps, SelectItemProps, SelectObjectValue } from './Select.types';
 import { getSizeStyles, getVariantStyles, getErrorStyles, getWidthStyles } from './Select.styles';
 import clsx from 'clsx';
 
@@ -8,14 +8,18 @@ import clsx from 'clsx';
  * Koast-ui Select(Dropdown) 컴포넌트입니다.
  * Select 컴포넌트의 옵션으로 사용됩니다.
  *
- * @param {string | number | Record<string, any>} props.value - 항목의 값 : string | number | Record<string, any>
+ * @param {string | number | SelectObjectValue} props.value - 항목의 값입니다. 객체인 경우 반드시 name 속성이 필요합니다.
  * @param {React.ReactNode} props.children - 항목에 표시될 내용 : React.ReactNode
  * @param {boolean} [props.disabled=false] - 비활성화 상태 : boolean
  * @param {string} [props.className] - 추가 CSS 클래스 : string
  *
  * @example
  * ```tsx
- * <SelectItem value="option1" disabled={false}>옵션 1</SelectItem>
+ * // 문자열 값 사용
+ * <SelectItem value="option1">옵션 1</SelectItem>
+ *
+ * // 객체 값 사용 (반드시 name 속성 필요)
+ * <SelectItem value={{ name: "옵션 1", id: 1 }}>옵션 1</SelectItem>
  * ```
  */
 export const SelectItem = ({ value, children, disabled, className }: SelectItemProps) => {
@@ -37,8 +41,8 @@ export const SelectItem = ({ value, children, disabled, className }: SelectItemP
  * Koast/ui Select 컴포넌트입니다.
  * 사용자가 여러 옵션 중 하나를 선택할 수 있는 드롭다운 메뉴를 제공합니다.
  *
- * @param {string | number | Record<string, any>} [props.value] - 선택된 값 : string | number | Record<string, any>
- * @param {string | number | Record<string, any>} [props.defaultValue] - 기본 선택 값 : string | number | Record<string, any>
+ * @param {string | number | SelectObjectValue} [props.value] - 선택된 값입니다. 객체인 경우 반드시 name 속성이 필요합니다.
+ * @param {string | number | SelectObjectValue} [props.defaultValue] - 기본 선택 값입니다. 객체인 경우 반드시 name 속성이 필요합니다.
  * @param {Function} [props.onChange] - 값 변경 시 호출되는 콜백 함수 : Function
  * @param {string} [props.placeholder] - 선택되지 않았을 때 표시되는 텍스트 : string
  * @param {boolean} [props.disabled=false] - 비활성화 상태 : boolean
@@ -55,15 +59,21 @@ export const SelectItem = ({ value, children, disabled, className }: SelectItemP
  *
  * @example
  * ```tsx
- * <Select label="Age" value={age} onChange={(value) => setAge(value)}>
- *   <SelectItem value={10}>Ten</SelectItem>
- *   <SelectItem value={20}>Twenty</SelectItem>
- *   <SelectItem value={30}>Thirty</SelectItem>
+ * // 문자열 값 사용
+ * <Select value="option1" onChange={(value) => setValue(value)}>
+ *   <SelectItem value="option1">옵션 1</SelectItem>
+ *   <SelectItem value="option2">옵션 2</SelectItem>
+ * </Select>
+ *
+ * // 객체 값 사용 (반드시 name 속성 필요)
+ * <Select value={{ name: "옵션 1", id: 1 }} onChange={(value) => setValue(value)}>
+ *   <SelectItem value={{ name: "옵션 1", id: 1 }}>옵션 1</SelectItem>
+ *   <SelectItem value={{ name: "옵션 2", id: 2 }}>옵션 2</SelectItem>
  * </Select>
  * ```
  */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const Select = <T extends string | number | Record<string, any> = string | number>(
+
+export const Select = <T extends string | number | SelectObjectValue = string | number>(
   props: SelectProps<T>,
 ) => {
   const {
@@ -145,7 +155,8 @@ export const Select = <T extends string | number | Record<string, any> = string 
     // 현재 선택된 값과 일치하는 SelectItem을 찾음
     const selectedItem = childrenArray.find((child) => {
       if (typeof selectedValue === 'object' && typeof child.props.value === 'object') {
-        return JSON.stringify(child.props.value) === JSON.stringify(selectedValue);
+        // name 속성으로 비교
+        return selectedValue.name === child.props.value.name;
       }
       return child.props.value === selectedValue;
     });
