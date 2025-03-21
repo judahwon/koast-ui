@@ -1,20 +1,29 @@
 import React from 'react';
 
 /**
- * Select 컴포넌트의 속성을 정의하는 인터페이스
- * @template T - string, number 또는 객체 타입 (기본값: string | number)
+ * Select에서 사용되는 객체 타입의 값에 대한 인터페이스
  */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export interface SelectProps<T extends string | number | Record<string, any> = string | number> {
+export interface SelectObjectValue {
+  name: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  [key: string]: any;
+}
+
+/**
+ * Select 컴포넌트의 속성을 정의하는 인터페이스
+ * @template T - string, number 또는 name 속성을 가진 객체 타입
+ */
+
+export interface SelectProps<T extends string | number | SelectObjectValue = string | number> {
   /**
    * Select의 값입니다.
-   * string, number 또는 { [key: string]: string | number } 형태의 객체가 될 수 있습니다.
+   * string, number 또는 반드시 name(string) 속성을 포함하는 객체가 될 수 있습니다.
    */
   value?: T;
 
   /**
    * 기본 값입니다. (비제어 컴포넌트로 사용할 때)
-   * string, number 또는 { [key: string]: string | number } 형태의 객체가 될 수 있습니다.
+   * string, number 또는 반드시 name(string) 속성을 포함하는 객체가 될 수 있습니다.
    */
   defaultValue?: T;
 
@@ -97,10 +106,9 @@ export interface SelectProps<T extends string | number | Record<string, any> = s
 export interface SelectItemProps {
   /**
    * SelectItem의 값입니다.
-   * string, number 또는 { [key: string]: string | number } 형태의 객체가 될 수 있습니다.
+   * string, number 또는 반드시 name(string) 속성을 포함하는 객체가 될 수 있습니다.
    */
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  value: string | number | Record<string, any>;
+  value: string | number | SelectObjectValue;
 
   /**
    * SelectItem의 자식 요소입니다.

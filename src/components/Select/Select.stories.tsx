@@ -94,6 +94,7 @@ export const Default: SelectStory = {
 
 /**
  * 제어 컴포넌트로 사용하는 Select 예시입니다.
+ * 오브젝트 값은 반드시 name 속성을 포함해야 합니다.
  */
 export const Controlled: SelectStory = {
   render: () => {
