@@ -50,6 +50,14 @@ const meta = {
         defaultValue: { summary:'md' },
       },
     },
+    theme: {
+      control: { type: 'select' },
+      options: ['dark', 'light', 'cool', 'warm'],
+      description: '타임슬라이더 색상 테마. 기본값은 dark',
+      table: {
+        defaultValue: { summary: 'dark' },
+      },
+    },
     steps: {
       control:  { disable: true },
       description: '타임슬라이더에 사용할 시간 목록 혹은 시작,종료,스텝간격, 스텝단위를 이용하여 시간 목록을 만드는 함수. 불규칙적인 경우 사용 (ex.해양기상정보포털). 입력 시 가장 우선적으로 적용.',
@@ -91,6 +99,7 @@ export const Default: TimeSliderStory = {
     stepValue: 30,
     stepUnit: 'minute',
     size: 'md',
+    theme: 'dark',
     onChange: undefined,
     renderRulerLabel: (date: Date) => {
       const format = (date: Date) => {
