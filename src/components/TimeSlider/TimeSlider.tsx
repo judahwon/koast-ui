@@ -162,23 +162,29 @@ export const TimeSlider = (props: StepTimeSliderProps) => {
 
   const handleMouseOut = () => hideGuageHoverMessage(gaugeHoverGuideRef.current);
 
-  const PrevNextButton = ({ points, onClick }: { points: string, onClick: ()=> void }) => {
+  const PrevButton = () => {
     return (
-      <button onClick={onClick} className={`relative ${ prevnextSizeAndRounded } bg-gray-100 shadow-[0_0_4px_0_#000]`}>
-        <PrevNextSvg points={points} />
+      <button onClick={handlePrev} className={`flex items-center justify-center px-px ${ prevnextSizeAndRounded } bg-gray-100 shadow-[0_0_4px_0_#000]`}>
+        <svg viewBox={'0 0 16 16'} className={'size-4/5'}>
+          <polyline points={'12,2 4,8 12,14'} fill={'none'} stroke={pnBtnColor} strokeWidth={'2'} />
+        </svg>
       </button>
     );
   };
-  const PrevNextSvg = ({ points }: { points: string }) => {
-    return(
-      <svg viewBox={'0 0 16 16'} className={'ml-[10%] size-4/5'}>
-        <polyline points={points} fill={'none'} stroke={pnBtnColor} strokeWidth={'2'} />
-      </svg>
+
+  const NextButton = () => {
+    return (
+      <button onClick={handleNext} className={`flex items-center justify-center pl-0.5 ${ prevnextSizeAndRounded } bg-gray-100 shadow-[0_0_4px_0_#000]`}>
+        <svg viewBox={'0 0 16 16'} className={'size-4/5'}>
+          <polyline points={'4,2 12,8 4,14'} fill={'none'} stroke={pnBtnColor} strokeWidth={'2'} />
+        </svg>
+      </button>
     );
   };
+
   return (
     <section className={clsx(`flex ${ mainSize } gap-1`)}>
-      <section className={clsx('timeslider-animation-box-wrapper relative h-full', animationBoxWrapperWidth, 'cursor-pointer')}>
+      <section className={clsx('timeslider-animation-box-wrapper flex h-full flex-col items-center justify-center', animationBoxWrapperWidth, 'cursor-pointer')}>
         <div
           onClick={() => {
             setIsRun(!isRun);
@@ -192,8 +198,8 @@ export const TimeSlider = (props: StepTimeSliderProps) => {
           )}
         />
         <div className={'mt-[3px] flex gap-1'}>
-          <PrevNextButton points={'12,2 4,8 12,14'} onClick={() => {handlePrev();}} />
-          <PrevNextButton points={'4,2 12,8 4,14'} onClick={() => {handleNext();}} />
+          <PrevButton />
+          <NextButton />
         </div>
       </section>
 
