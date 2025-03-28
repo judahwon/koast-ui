@@ -199,3 +199,40 @@ export const RenderRulerLabel: TimeSliderStory = {
     );
   },
 };
+
+/**
+ * Theme 예시입니다.<br>
+ * 슬라이더 색상 테마를 변경합니다.
+ */
+export const Theme: TimeSliderStory = {
+  render: () => {
+    const args: StepTimeSliderProps = {
+      start: new Date('2025-03-10 07:47'),
+      end: new Date('2025-03-10 09:47'),
+      stepValue: 30,
+      stepUnit: 'minute',
+      size: 'md',
+      onChange: undefined,
+      renderRulerLabel: (date: Date) => {
+        const format = (date: Date) => {
+          const dateDate = date.getDate();
+          const month = date.getMonth() + 1;
+
+          const hour = date.getHours();
+          const min = date.getMinutes();
+
+          return `${ month }-${ dateDate } ${ hour }:${ min }`;
+        };
+        return format(date);
+      },
+    };
+    return (
+      <div className={'flex flex-col gap-20'}>
+        <TimeSlider {...args} theme={'dark'} />
+        <TimeSlider {...args} theme={'light'} />
+        <TimeSlider {...args} theme={'cool'} />
+        <TimeSlider {...args} theme={'warm'} />
+      </div>
+    );
+  },
+};
