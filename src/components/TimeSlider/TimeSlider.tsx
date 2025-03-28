@@ -21,7 +21,7 @@ import { StepTimeSliderProps } from './TimeSlider.types';
  *
  */
 export const TimeSlider = (props: StepTimeSliderProps) => {
-  const { start, end, stepValue, initialDate, stepUnit = 'minute', size = 'md', theme = 'cool', steps, animationSpeed = 1000, onChange, renderGuideMessage, renderSelectedGuideMessage, renderRulerLabel } = props;
+  const { start, end, stepValue, initialDate, stepUnit = 'minute', size = 'md', theme = 'dark', steps, animationSpeed = 1000, onChange, renderGuideMessage, renderSelectedGuideMessage, renderRulerLabel } = props;
 
   const startDate = returnDate(start);
   const endDate = returnDate(end);
