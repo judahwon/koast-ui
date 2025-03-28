@@ -47,6 +47,11 @@ export interface StepTimeSliderProps extends CommonTimeSliderProps {
   size?: TimeSliderSize;
 
   /**
+   * 타임슬라이더 색상 테마. 기본값은 dark
+   */
+  theme?: TimeSliderTheme;
+
+  /**
    * 타임슬라이더 재생 시간 간격, 기본값은 1000, 단위는 밀리세컨드
    */
   animationSpeed?: number
@@ -73,6 +78,7 @@ export interface StepTimeSliderProps extends CommonTimeSliderProps {
 
 export type TimeUnit = 'year' | 'month' | 'day' | 'hour' | 'minute' | 'second';
 export type TimeSliderSize = 'sm' | 'md' | 'lg';
+export type TimeSliderTheme = 'dark' | 'light' | 'cool' | 'warm';
 
 export interface StepTimeSliderOnChangeProps {
   step: number,

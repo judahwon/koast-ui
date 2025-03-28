@@ -1,8 +1,8 @@
 // import './TimeSlider.css';
-import { useEffect, useMemo, useRef, useState } from 'react';
-import { calculateIndex, changeSelectedGuideMessage, generateSteps, hideGuageHoverMessage, playStyleStatus, returnDate, showGuageHoverMessage, sizeToTWClassName } from './TimeSlider.func';
-import { StepTimeSliderProps } from './TimeSlider.types';
 import clsx from 'clsx';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import { calculateIndex, changeSelectedGuideMessage, generateSteps, hideGuageHoverMessage, playStyleStatus, returnDate, showGuageHoverMessage, sizeToTWClassName, themeToTWColorClassName } from './TimeSlider.func';
+import { StepTimeSliderProps } from './TimeSlider.types';
 /**
  * koast-ui 타임슬라이더 컴포넌트입니다.
  * @param {'Date'} [props.start] - 타임슬라이더 시작 시간. required
@@ -11,6 +11,7 @@ import clsx from 'clsx';
  * @param {'Date'} [props.initialDate] - 초기 슬라이더 시간. 미입력 시 가장 첫번째 위치에 위치 optional
  * @param {'TimeUnit'} [props.stepUnit] - 타임슬라이더 간격 단위. 기본값은 minute, 'year' | 'month' | 'day' | 'hour' | 'minute' | 'second';
  * @param {'TimeSliderSize'} [props.size] - 타임슬라이더 크기. 기본값은 md, 'sm' | 'md' | 'lg';
+ * @param {'TimeSliderTheme'} [props.theme] - 타임슬라이더 색상 테마. 기본값은 dark, 'dark' | 'light' | 'cool' | 'warm';
  * @param {'Date[] | ((start: Date, end: Date, stepValue: number, stepUnit?: TimeUnit)=> Date[]'} [props.steps] - 타임슬라이더 시간 목록. 불규칙적인 경우 사용 (ex.해양기상정보포털). 사용 시 가장 우선적으로 적용됨. optional
  * @param {'number'} [props.animationSpeed] - 타임슬라이더 재생 시간 간격, 기본값은 1000, 단위는 밀리세컨드
  * @param {'(StepTimeSliderOnChangeProps)=> void'} [props.onChange] - 타임 슬라이더 스텝 변경 시 콜백 함수. {step: number,date: Date} 형태의 인자를 넘겨주는 함수 형태
@@ -20,7 +21,7 @@ import clsx from 'clsx';
  *
  */
 export const TimeSlider = (props: StepTimeSliderProps) => {
-  const { start, end, stepValue, initialDate, stepUnit = 'minute', size = 'md', steps, animationSpeed = 1000, onChange, renderGuideMessage, renderSelectedGuideMessage, renderRulerLabel } = props;
+  const { start, end, stepValue, initialDate, stepUnit = 'minute', size = 'md', theme = 'dark', steps, animationSpeed = 1000, onChange, renderGuideMessage, renderSelectedGuideMessage, renderRulerLabel } = props;
 
   const startDate = returnDate(start);
   const endDate = returnDate(end);
@@ -51,6 +52,18 @@ export const TimeSlider = (props: StepTimeSliderProps) => {
     timeSliderWrapperWidth,
     timeSliderWrapperWidthNumber,
   } = sizeToTWClassName(size);
+
+  const {
+    bgColor,
+    playBtnColor,
+    stopBtnColor,
+    pnBtnColor,
+    playColor,
+    sliderColor,
+    textColor,
+    selectedGuideColor,
+    hoverGuideColor,
+  } = themeToTWColorClassName(theme);
 
   const calculatedStepsLength = calculatedSteps.length;
   const stepWidthPercentage = 100 / calculatedStepsLength;
@@ -149,23 +162,29 @@ export const TimeSlider = (props: StepTimeSliderProps) => {
 
   const handleMouseOut = () => hideGuageHoverMessage(gaugeHoverGuideRef.current);
 
-  const PrevNextButton = ({ points, onClick }: { points: string, onClick: ()=> void }) => {
+  const PrevButton = () => {
     return (
-      <button onClick={onClick} className={`relative ${ prevnextSizeAndRounded } bg-gray-100 shadow-[0_0_4px_0_#000]`}>
-        <PrevNextSvg points={points} />
+      <button onClick={handlePrev} className={`flex items-center justify-center px-px ${ prevnextSizeAndRounded } bg-gray-100 shadow-[0_0_4px_0_#000]`}>
+        <svg viewBox={'0 0 16 16'} className={'size-4/5'}>
+          <polyline points={'12,2 4,8 12,14'} fill={'none'} stroke={pnBtnColor} strokeWidth={'2'} />
+        </svg>
       </button>
     );
   };
-  const PrevNextSvg = ({ points }: { points: string }) => {
-    return(
-      <svg viewBox={'0 0 16 16'} className={'ml-[10%] size-4/5'}>
-        <polyline points={points} fill={'none'} stroke={'#9d0300'} strokeWidth={'2'} />
-      </svg>
+
+  const NextButton = () => {
+    return (
+      <button onClick={handleNext} className={`flex items-center justify-center pl-0.5 ${ prevnextSizeAndRounded } bg-gray-100 shadow-[0_0_4px_0_#000]`}>
+        <svg viewBox={'0 0 16 16'} className={'size-4/5'}>
+          <polyline points={'4,2 12,8 4,14'} fill={'none'} stroke={pnBtnColor} strokeWidth={'2'} />
+        </svg>
+      </button>
     );
   };
+
   return (
-    <section className={clsx(`flex ${ mainSize } gap-1 font-mono`)}>
-      <section className={clsx('timeslider-animation-box-wrapper relative h-full', animationBoxWrapperWidth, 'cursor-pointer')}>
+    <section className={clsx(`flex ${ mainSize } gap-1`)}>
+      <section className={clsx('timeslider-animation-box-wrapper flex h-full flex-col items-center justify-center', animationBoxWrapperWidth, 'cursor-pointer')}>
         <div
           onClick={() => {
             setIsRun(!isRun);
@@ -175,11 +194,12 @@ export const TimeSlider = (props: StepTimeSliderProps) => {
             playSizeAndRounded,
             'bg-gray-100 shadow-[0_0_4px_0_#000]',
             playStyleStatus(isRun, size),
+            isRun ? stopBtnColor : playBtnColor,
           )}
         />
         <div className={'mt-[3px] flex gap-1'}>
-          <PrevNextButton points={'12,2 4,8 12,14'} onClick={() => {handlePrev();}} />
-          <PrevNextButton points={'4,2 12,8 4,14'} onClick={() => {handleNext();}} />
+          <PrevButton />
+          <NextButton />
         </div>
       </section>
 
@@ -192,17 +212,17 @@ export const TimeSlider = (props: StepTimeSliderProps) => {
           className={'timeslider-guage-wrapper relative h-1/5 w-full cursor-pointer bg-clip-padding after:absolute after:inset-[-5px] after:z-[1] after:content-[""]'}
         >
           <div className={'relative size-full'}>
-            <div className={'absolute size-full rounded-none rounded-t-md bg-gray-500'} />
-            <div className={'absolute h-full rounded-none rounded-tl-md bg-gray-300'} style={{ width: `${ stepWidthPercentage * (currentIndex + 1) }%` }} />
+            <div className={clsx('absolute size-full rounded-none rounded-t-md', sliderColor)} />
+            <div className={clsx('absolute h-full rounded-none rounded-tl-md', playColor)} style={{ width: `${ stepWidthPercentage * (currentIndex + 1) }%` }} />
           </div>
           <div ref={gaugeHoverGuideRef} className={'pointer-events-none absolute top-[-2.4em] box-border text-sm opacity-0'}>
-            <div ref={gaugeHoverGuideTextRef} className={'relative box-border table-cell whitespace-nowrap rounded-[.5em] bg-gray-800 p-[0.2em] text-center align-middle text-white shadow-none before:absolute before:left-[1.5em] before:top-full before:ml-[-0.5em] before:size-0 before:border-[0.5em] before:border-solid before:border-transparent before:border-t-gray-800 before:content-[""]'} />
+            <div ref={gaugeHoverGuideTextRef} className={clsx('relative box-border table-cell whitespace-nowrap rounded-[.5em] p-[0.2em] text-center align-middle shadow-none before:absolute before:left-[1.5em] before:top-full before:ml-[-0.5em] before:size-0 before:border-[0.5em] before:border-solid before:border-transparent before:content-[""]', hoverGuideColor)} />
           </div>
           <div ref={selectedGuideRef} className={'opacity-1 pointer-events-none absolute top-[-2.4em] box-border w-[100px] text-base'}>
-            <div ref={selectedGuideTextRef} className={'relative box-border table-cell min-w-[100px] whitespace-nowrap rounded-[.5em] bg-orange-400 p-[0.2em] text-center align-middle text-white shadow-[0_0_4px_0_#000] before:absolute before:left-[42px] before:top-full before:size-0 before:border-[0.5em] before:border-solid before:border-transparent before:border-t-orange-400  before:content-[""]'} />
+            <div ref={selectedGuideTextRef} className={clsx('relative box-border table-cell min-w-[100px] whitespace-nowrap rounded-[.5em] p-[0.2em] text-center align-middle shadow-[0_0_4px_0_#000] before:absolute before:left-[42px] before:top-full before:size-0 before:border-[0.5em] before:border-solid before:border-transparent before:content-[""]', selectedGuideColor)} />
           </div>
         </section>
-        <section className={'timeslider-ruler-wrapper relative flex h-4/5 w-full flex-col bg-gray-800'}>
+        <section className={clsx('timeslider-ruler-wrapper relative flex h-4/5 w-full flex-col', bgColor)}>
           <div className={'timeslider-graduations-wrapper flex size-full flex-row'}>
             {
               calculatedSteps.map((date, index) => {
@@ -210,14 +230,14 @@ export const TimeSlider = (props: StepTimeSliderProps) => {
                   <div
                     key={`${ index }-graduation2`}
                     className={clsx(
-                      'relative flex h-full items-center justify-center',
+                      'relative flex h-full items-center justify-center text-gray-800',
                       calculatedStepsLength - 1 === index ? '' : 'before:absolute before:right-0 before:top-0 before:h-1/2 before:border-r-2 before:border-white before:content-[""]',
                     )}
                     style={{ width: `${ stepWidthPixel }px` }}
                   >
                     {
                       renderRulerLabel
-                        ? <span className={'text-white'}>{renderRulerLabel(date)}</span>
+                        ? <span className={textColor}>{renderRulerLabel(date)}</span>
                         : null
                     }
                   </div>

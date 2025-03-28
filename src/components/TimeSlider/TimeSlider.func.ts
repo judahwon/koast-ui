@@ -1,5 +1,5 @@
-import { DateToStringFunc, TimeSliderSize, TimeUnit } from './TimeSlider.types';
 import clsx from 'clsx';
+import { DateToStringFunc, TimeSliderSize, TimeSliderTheme, TimeUnit } from './TimeSlider.types';
 
 export const generateSteps = (
   start: Date,
@@ -167,11 +167,11 @@ const currentPlaySizeClassName = (size: TimeSliderSize) => {
 const currentStopStyle = (size: TimeSliderSize) => clsx(
   'before:absolute',
   currentStopSizeClassName(size),
-  'before:border-y-transparent before:border-l-[#9d0300] before:content-[""]',
+  'before:border-y-transparent before:content-[""]',
 );
 
 const currentPlayStyle = (size: TimeSliderSize) => clsx(
-  'before:absolute before:bg-[#9d0300] after:absolute after:bg-[#9d0300]',
+  'before:absolute after:absolute',
   currentPlaySizeClassName(size),
 );
 
@@ -242,4 +242,72 @@ export const sizeToTWClassName = (size: TimeSliderSize) => {
     timeSliderWrapperWidth,
     timeSliderWrapperWidthNumber,
   };
+};
+
+type ThemeColorSet = {
+  bgColor: string;
+  sliderColor: string;
+  playColor: string;
+  playBtnColor: string;
+  stopBtnColor: string;
+  pnBtnColor: string;
+  textColor: string;
+  selectedGuideColor: string;
+  hoverGuideColor: string;
+};
+export const themeToTWColorClassName = (theme: TimeSliderTheme): ThemeColorSet => {
+  switch (theme) {
+    case 'light': {
+      return {
+        bgColor: 'bg-gray-100',
+        sliderColor: 'bg-gray-300',
+        playColor: 'bg-green-600',
+        playBtnColor: 'before:border-l-gray-800',
+        stopBtnColor: 'before:bg-gray-800 after:bg-gray-800',
+        pnBtnColor: '#1f2937',
+        textColor: 'text-gray-900',
+        selectedGuideColor: 'bg-green-300 text-gray-900 before:border-t-green-300',
+        hoverGuideColor: 'bg-green-300 text-gray-900 before:border-t-green-300',
+      };
+    }
+    case 'cool': {
+      return {
+        bgColor: 'bg-blue-100',
+        sliderColor: 'bg-blue-300',
+        playColor: 'bg-blue-700',
+        playBtnColor: 'before:border-l-blue-800',
+        stopBtnColor: 'before:bg-blue-800 after:bg-blue-800',
+        pnBtnColor: '#1d4ed8',
+        textColor: 'text-blue-900',
+        selectedGuideColor: 'bg-blue-200 text-blue-900 before:border-t-blue-200',
+        hoverGuideColor: 'bg-blue-100 text-blue-900 before:border-t-blue-100',
+      };
+    }
+    case 'warm': {
+      return {
+        bgColor: 'bg-orange-100',
+        sliderColor: 'bg-orange-300',
+        playColor: 'bg-orange-600',
+        playBtnColor: 'before:border-l-orange-800',
+        stopBtnColor: 'before:bg-orange-800 after:bg-orange-800',
+        pnBtnColor: '#c2410c',
+        textColor: 'text-orange-900',
+        selectedGuideColor: 'bg-orange-200 text-orange-900 before:border-t-orange-200',
+        hoverGuideColor: 'bg-orange-100 text-orange-900 before:border-t-orange-100',
+      };
+    }
+    default: {
+      return {
+        bgColor: 'bg-gray-800',
+        sliderColor: 'bg-gray-600',
+        playColor: 'bg-gray-300',
+        playBtnColor: 'before:border-l-red-700',
+        stopBtnColor: 'before:bg-red-700 after:bg-red-700',
+        pnBtnColor: '#9d0300',
+        textColor: 'text-white',
+        selectedGuideColor: 'bg-orange-400 text-white before:border-t-orange-400',
+        hoverGuideColor: 'bg-gray-800 text-white before:border-t-gray-800',
+      };
+    }
+  }
 };
