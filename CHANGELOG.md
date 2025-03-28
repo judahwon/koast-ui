@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.0.33] - 2025-03-28
+### Added
+- TimeSlider 컴포넌트 theme 속성 추가 (스토리북 예시 추가)
+### Fixed
+- TimeSlider 컴포넌트 버튼 스타일 수정
+
 ## [0.0.32] - 2025-03-21
 ### Fixed
 - Select 컴포넌트 버그 수정 : 객체 타입 내 name 속성 추가
