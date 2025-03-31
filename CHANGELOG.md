@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.0.35] - 2025-03-31
+### Fixed
+- TimeSlider 컴포넌트 버그 수정 : 기본 width를 w-full로 변경
+
 ## [0.0.34] - 2025-03-28
 ### Test
 - package 수정사항 변경 테스트
