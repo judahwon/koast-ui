@@ -189,58 +189,29 @@ export const sizeToTWClassName = (size: TimeSliderSize) => {
   const prevnextPercent = 0.375;
   const mainHeight = 48;
    */
-  let mainWidth = 800;
-  let mainSize = 'h-[48px] w-[800px]';
-  let animationBoxWrapperWidth = 'w-[40px]';
-  let timeSliderWrapperWidth = 'w-[720px]';
+  let mainSize = 'h-[48px]';
   let playSizeAndRounded = 'size-[30px] rounded-[30px]';
   let prevnextSizeAndRounded = 'size-[15px] rounded-[15px]';
 
-  /* const animationBoxWrapperWidth = mainWidth * animationWidthPercent;
-  const playSize = animationBoxWrapperWidth * playPercent;
-  const prevnextSize = animationBoxWrapperWidth * prevnextPercent;
-   */
   switch (size) {
     case 'sm': {
-      // mainHeight = 36;
-      mainWidth = 600;
-      mainSize = 'h-[36px] w-[600px]';
-      animationBoxWrapperWidth = 'w-[30px]';
-      timeSliderWrapperWidth = 'w-[540px]';
+      mainSize = 'h-[36px]';
       playSizeAndRounded = 'size-[22.5px] rounded-[22.5px]';
       prevnextSizeAndRounded = 'size-[11.25px] rounded-[11.25px]';
       break;
     }
     case 'lg': {
-      // mainHeight = 72;
-      mainWidth = 1200;
-      mainSize = 'h-[72px] w-[1200px]';
-      animationBoxWrapperWidth = 'w-[60px]';
-      timeSliderWrapperWidth = 'w-[1080px]';
+      mainSize = 'h-[72px]';
       playSizeAndRounded = 'size-[45px] rounded-[45px]';
       prevnextSizeAndRounded = 'size-[22.5px] rounded-[22.5px]';
       break;
     }
-    /* case 'md':
-    default: {
-      // mainHeight = 48;
-      // mainWidth = 800;
-      mainSize = 'w-[48px] h-[800px]';
-      animationBoxWrapperWidth = 'w-[40px]';
-      timeSliderWrapperWidth = 'w-[720px]';
-      playSizeAndRounded = 'size-[30px] rounded-[30px]';
-      prevnextSizeAndRounded = 'size-[15px] rounded-[15px]';
-    } */
   }
-  const timeSliderWrapperWidthNumber = mainWidth * sliderWidthPercent;
 
   return {
     mainSize,
-    animationBoxWrapperWidth,
     playSizeAndRounded,
     prevnextSizeAndRounded,
-    timeSliderWrapperWidth,
-    timeSliderWrapperWidthNumber,
   };
 };
 

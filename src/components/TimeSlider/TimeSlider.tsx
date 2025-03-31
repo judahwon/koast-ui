@@ -46,11 +46,8 @@ export const TimeSlider = (props: StepTimeSliderProps) => {
 
   const {
     mainSize,
-    animationBoxWrapperWidth,
     playSizeAndRounded,
     prevnextSizeAndRounded,
-    timeSliderWrapperWidth,
-    timeSliderWrapperWidthNumber,
   } = sizeToTWClassName(size);
 
   const {
@@ -67,7 +64,6 @@ export const TimeSlider = (props: StepTimeSliderProps) => {
 
   const calculatedStepsLength = calculatedSteps.length;
   const stepWidthPercentage = 100 / calculatedStepsLength;
-  const stepWidthPixel = timeSliderWrapperWidthNumber / calculatedStepsLength;
 
   const initialTimestamp = (initialDate && calculatedSteps.map((step) => step.getTime()).includes(initialDate.getTime())) ? initialDate.getTime() : startDate.getTime();
   const initialStepIndex = useMemo(() => {
@@ -183,8 +179,8 @@ export const TimeSlider = (props: StepTimeSliderProps) => {
   };
 
   return (
-    <section className={clsx(`flex ${ mainSize } gap-1`)}>
-      <section className={clsx('timeslider-animation-box-wrapper flex h-full flex-col items-center justify-center', animationBoxWrapperWidth, 'cursor-pointer')}>
+    <section className={clsx(`flex ${ mainSize } w-full gap-1`)}>
+      <section className={clsx('timeslider-animation-box-wrapper flex h-full min-w-[40px] cursor-pointer flex-col items-center justify-center')}>
         <div
           onClick={() => {
             setIsRun(!isRun);
@@ -203,7 +199,7 @@ export const TimeSlider = (props: StepTimeSliderProps) => {
         </div>
       </section>
 
-      <section className={`timeslider-wrapper ${ timeSliderWrapperWidth }`}>
+      <section className={'timeslider-wrapper flex-1'}>
         <section
           ref={gaugeRef}
           onClick={handleClick}
@@ -233,7 +229,7 @@ export const TimeSlider = (props: StepTimeSliderProps) => {
                       'relative flex h-full items-center justify-center text-gray-800',
                       calculatedStepsLength - 1 === index ? '' : 'before:absolute before:right-0 before:top-0 before:h-1/2 before:border-r-2 before:border-white before:content-[""]',
                     )}
-                    style={{ width: `${ stepWidthPixel }px` }}
+                    style={{ width: `${ stepWidthPercentage }%` }}
                   >
                     {
                       renderRulerLabel
