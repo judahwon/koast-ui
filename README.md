@@ -103,19 +103,19 @@ export default App;
 | 제작여부 |  컴포넌트   |      설명       |
 | :------: | :---------: | :-------------: |
 |    ✅    |   Button    |      버튼       |
-|          | ButtonGroup |    버튼 그룹    |
+|    ✅    | ButtonGroup |    버튼 그룹    |
 |    ✅    |   Select    | 셀렉트 드롭다운 |
 |          |  CheckBox   |    체크박스     |
 |          | RadioGroup  |   라디오 그룹   |
 |          |   Slider    |    슬라이더     |
-|          | TimeSlider  |  시간 슬라이더  |
+|    ✅      | TimeSlider  |  시간 슬라이더  |
 |          |   Switch    |     스위치      |
 |          |  TextField  |   텍스트 필드   |
 |          |    Table    |     테이블      |
 |          |  Progress   |  프로그레스 바  |
 |          |  Accordion  |    아코디언     |
 |          | Pagination  |  페이지네이션   |
-|          |  MapLegend  |    지도 범례    |
+|    ✅      |  MapLegend  |    지도 범례    |
 
 ### 베타 기능 이후 제작 예정
 
