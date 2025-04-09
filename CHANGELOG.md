@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.0.1] - 2025-04-09
+### Added
+- 1.0.1 버전 Release test
+
 ## [1.0.0] - 2025-04-09
 ### Chore
 - 1.0.0 버전 Release
