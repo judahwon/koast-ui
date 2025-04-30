@@ -38,7 +38,12 @@ export default defineConfig(({ command }) => ({
     },
     outDir: resolve(__dirname, 'dist'),
     rollupOptions: {
-      external: ['react', 'react-dom'],
+      external: [
+        'react', 
+        'react-dom',
+        'react/jsx-runtime',
+        'react/jsx-dev-runtime',
+      ],
       output: {
         globals: {
           react: 'React',
@@ -49,10 +54,6 @@ export default defineConfig(({ command }) => ({
     sourcemap: false,
     emptyOutDir: true,
     cssCodeSplit: false,
-  },
-  esbuild: {
-    target: 'esnext',
-    format: 'esm',
   },
   server: {
     host: true,
